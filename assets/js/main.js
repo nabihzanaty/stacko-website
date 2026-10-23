@@ -37,8 +37,22 @@ const T={
   months:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
   mwLow:n=>`${n} low`,mwCap:p=>`${p}% capacity`,mwName:w=>`${T.en[w]} warehouse`,
   fmPh:{name:'Your name',company:'Company name',phone:'+961 …',email:'name@company.com',msg:'For example: electronics and home goods from Türkiye and the UAE'},
-  fmText:d=>`Hi Stacko team, I'd like a demo.\nName: ${d.name}\nCompany: ${d.company||'-'}\nPhone: ${d.phone}\nEmail: ${d.email||'-'}\nWarehouses or branches: ${d.wh}\nImports: ${d.msg||'-'}`,
-  copied:'Copied'},
+  fmText:d=>`Hi Stacko team, I'd like a demo.\nName: ${d.name}\nCompany: ${d.company||'-'}\nPhone: ${d.phone}\nEmail: ${d.email||'-'}\nWarehouses or branches: ${d.wh}\nUsing today: ${d.sys}\nImports: ${d.msg||'-'}`,
+  copied:'Copied',
+  ivRead:'Reading…',ivDraft:'Draft · needs review',ivOk:'Approved',
+  spF2Read:'Matching items…',spF2Draft:'2 matched · 2 new to confirm',spF2Ok:'2 matched · 2 created',
+  rvTRead:'AI is reading the invoice',rvSRead:'Nothing is recorded yet',rvTDraft:'Waiting for Maya to review',rvSDraft:'Owner · approves purchases',rvTOk:'Approved by Maya · 09:12',rvSOk:'Shipment recorded in the ledger',rvBtn:'Approve',
+  rlScope:'Locations',lv:{y:'Allowed',s:'Own sites',d:'Draft, needs approval',n:'No access'},
+  acts:['View map and stock','Upload invoices and documents','Log receipts, issues and transfers','Approve transactions','Adjust stock after counts','Track imports and shipments','Reports','Manage users and permissions'],
+  roles:[['Owner','Map and reports','Sees every site, every move and every report. Approves stock adjustments.','All locations'],
+   ['Admin','Settings','Sets up warehouses, users and permissions. Doesn\'t move stock.','All locations'],
+   ['Warehouse manager','App','Runs one site. Receives shipments, approves transfers and runs counts.','Assigned sites'],
+   ['Floor staff','Telegram','Most of the team. Logs stock in, out and transfers from Telegram or the app.','Assigned sites'],
+   ['Purchasing','Invoice upload','Uploads supplier invoices and tracks sea and air shipments from any country.','All locations'],
+   ['Document clerk','Upload','Uploads invoices and documents and prepares drafts. Sees only their own submissions.','Own submissions'],
+   ['Operations reviewer','Approvals','Reviews AI drafts, resolves flagged lines and approves transactions.','All locations'],
+   ['Branch staff','App','Sees stock everywhere to answer customers, but only records stock leaving their own branch.','Assigned branch'],
+   ['Read-only viewer','Map and reports','For accountants, auditors and partners. Sees the map, stock and reports, and changes nothing.','Permitted locations']]},
  ar:{units:'وحدة',W1:'بيروت',W2:'صيدا',W3:'طرابلس',PORT:'مرفأ بيروت',AIR:'مطار بيروت',CN:'المورّد',
   cap:'من السعة مستخدمة',ok:'متوفر',low:'منخفض',skus:'صنف',lowS:'منخفض',inb:'واردة',outb:'صادرة',search:'ابحث عن صنف أو رمز…',
   left:'متبقٍ',du:[' ي',' س',' د'],customs:'الجمارك',landing:'هبوط',
@@ -68,18 +82,31 @@ const T={
   months:['كانون الثاني','شباط','آذار','نيسان','أيار','حزيران','تموز','آب','أيلول','تشرين الأول','تشرين الثاني','كانون الأول'],
   mwLow:n=>`${n} منخفضة`,mwCap:p=>`${p}% من السعة`,mwName:w=>`مستودع ${T.ar[w]}`,
   fmPh:{name:'اسمك',company:'اسم الشركة',phone:'+961 …',email:'name@company.com',msg:'مثلاً: إلكترونيات وأدوات منزلية من تركيا والإمارات'},
-  fmText:d=>`مرحباً فريق ستاكو، أود حجز عرض تجريبي.\nالاسم: ${d.name}\nالشركة: ${d.company||'-'}\nالهاتف: ${d.phone}\nالبريد الإلكتروني: ${d.email||'-'}\nعدد المستودعات أو الفروع: ${d.wh}\nالاستيراد: ${d.msg||'-'}`,
-  copied:'تم النسخ'}
+  fmText:d=>`مرحباً فريق ستاكو، أود حجز عرض تجريبي.\nالاسم: ${d.name}\nالشركة: ${d.company||'-'}\nالهاتف: ${d.phone}\nالبريد الإلكتروني: ${d.email||'-'}\nعدد المستودعات أو الفروع: ${d.wh}\nالنظام الحالي: ${d.sys}\nالاستيراد: ${d.msg||'-'}`,
+  copied:'تم النسخ',
+  ivRead:'قيد القراءة…',ivDraft:'مسودة · بانتظار المراجعة',ivOk:'تمت الموافقة',
+  spF2Read:'جارٍ مطابقة الأصناف…',spF2Draft:'2 مطابقان · 2 جديدان للتأكيد',spF2Ok:'2 مطابقان · 2 أُنشئا',
+  rvTRead:'الذكاء الاصطناعي يقرأ الفاتورة',rvSRead:'لم يُسجَّل شيء بعد',rvTDraft:'بانتظار مراجعة مايا',rvSDraft:'المالكة · توافق على المشتريات',rvTOk:'وافقت مايا · 09:12',rvSOk:'سُجّلت الشحنة في السجل',rvBtn:'موافقة',
+  rlScope:'المواقع',lv:{y:'مسموح',s:'مواقعه فقط',d:'مسودة تحتاج موافقة',n:'غير مسموح'},
+  acts:['عرض الخريطة والمخزون','رفع الفواتير والمستندات','تسجيل الاستلام والإخراج والتحويل','الموافقة على المعاملات','تعديل المخزون بعد الجرد','متابعة الاستيراد والشحنات','التقارير','إدارة المستخدمين والصلاحيات'],
+  roles:[['المالك','الخريطة والتقارير','يرى كل موقع وكل حركة وكل تقرير، ويوافق على تعديلات المخزون.','كل المواقع'],
+   ['مسؤول النظام','الإعدادات','يجهّز المستودعات والمستخدمين والصلاحيات، ولا ينقل بضاعة.','كل المواقع'],
+   ['مدير المستودع','التطبيق','يدير موقعاً واحداً. يستلم الشحنات، يوافق على التحويلات، ويجري الجرد.','المواقع المعيّنة'],
+   ['فريق العمل','Telegram','معظم الفريق. يسجّلون الإدخال والإخراج والتحويلات عبر Telegram أو التطبيق.','المواقع المعيّنة'],
+   ['المشتريات','رفع الفواتير','يرفعون فواتير الموردين ويتابعون الشحنات البحرية والجوية من أي بلد.','كل المواقع'],
+   ['موظف المستندات','الرفع','يرفع الفواتير والمستندات ويجهّز المسودات، ولا يرى إلا ما أرسله.','ما أرسله فقط'],
+   ['مراجع العمليات','الموافقات','يراجع مسودات الذكاء الاصطناعي، يحلّ الأسطر المعلَّمة، ويوافق على المعاملات.','كل المواقع'],
+   ['موظف الفرع','التطبيق','يرى المخزون في كل المواقع ليجيب الزبائن، لكنه يسجّل فقط البضاعة الخارجة من فرعه.','الفرع المعيّن'],
+   ['مشاهد فقط','الخريطة والتقارير','للمحاسبين والمدققين والشركاء. يرى الخريطة والمخزون والتقارير، ولا يغيّر شيئاً.','المواقع المسموحة']]}
 };
 const t=k=>T[lang][k];
 
 /* ================= static copy (Arabic) ================= */
 const AR={
- navHow:'كيف يعمل',navProduct:'التطبيق',navFeatures:'الميزات',navImports:'الاستيراد',navTeams:'الفريق',navDemo:'احجز عرضاً',
- heroPill:'وصول مبكر · لبنان والخليج',heroH1:'مخزونك دايماً قدّام عينك',
+ navHow:'كيف يعمل',navProduct:'التطبيق',navSetup:'التكامل',navRoles:'الأدوار',navPlans:'الخطط',navFaq:'الأسئلة',navDemo:'احجز عرضاً',
+ heroH1:'مخزونك دايماً قدّام عينك',
  heroLede:'ستاكو يضع كل مستودعاتك وأصنافك وشحناتك على خريطة حيّة واحدة. فريقك يسجّل الحركة بحوالي 10 ثوانٍ، والشاحنة تنطلق على الخريطة.',
  heroCta:'احجز عرضاً تجريبياً',heroHow:'تابع تحويلاً واحداً',pcName:'مستودع بيروت',pcP:'المنتجات',pcT:'قيد النقل',pcA:'المتوفر',
- heroCred:'صُمّم مع مستورد لبناني يدير <b>3 مستودعات</b> و<b>حوالي 10,000 صنف</b> و<b>حوالي 20 موظفاً</b>، وتصله شحنات جديدة كل شهر.',
  pbEyebrow:'المشكلة الحقيقية',pbH2:'لا أحد يسجّل التحويلات.',
  pbP:'البضاعة تتنقّل بين المستودعات طوال اليوم. تسجيل كل حركة يبدو عملاً إضافياً بلا نتيجة ظاهرة، فيُهمَل. الأرقام تنحرف، وبعد فترة لا أحد يثق بها.',
  pbAnswer:'<b>جواب ستاكو:</b> أن يأخذ التسجيل حوالي 10 ثوانٍ، وأن تظهر كل حركة على الخريطة كشاحنة أو سفينة أو طائرة.',
@@ -91,8 +118,9 @@ const AR={
  stageNote:'رسم توضيحي · بيانات تجريبية',jEyebrow:'كيف يعمل',jH2:'رسالة واحدة. شاحنة واحدة على الخريطة.',
  jP:'تابع تحويلاً واحداً من بيروت إلى صيدا، من الرسالة على رصيف التحميل حتى وصول البضاعة إلى الرف.',
  s1no:'الخطوة 1 من 4',s1h:'هادي يرسل رسالة',s1p:'بلا نماذج ولا جداول. الموظفون يسجّلون الحركات على Telegram بكلماتهم، مباشرةً من رصيف التحميل.',
- tgName:'بوت ستاكو',tgSub:'Telegram · فريق بيروت',tgMsg:'بعتت 40 شريط LED من بيروت لصيدا',tgBot:'تمام. جارٍ تسجيل تحويل من WH-01 بيروت إلى WH-02 صيدا.',
- s2no:'الخطوة 2 من 4',s2h:'ستاكو يحوّلها إلى سجل',s2p:'الذكاء الاصطناعي يقرأ الرسالة، يطابق الصنف والمستودعين، ويخصم الكمية من المصدر.',
+ tgName:'بوت ستاكو',tgSub:'Telegram · فريق بيروت',tgMsg:'بعتت 40 شريط LED من بيروت لصيدا',tgBot:'تمام. جهّزت مسودة تحويل من WH-01 بيروت إلى WH-02 صيدا وأرسلتها إلى كريم للموافقة.',
+ s2no:'الخطوة 2 من 4',s2h:'ستاكو يجهّز المسودة. كريم يوافق.',s2p:'الذكاء الاصطناعي يقرأ الرسالة ويطابق الصنف والمستودعين. كريم، مدير مستودع بيروت، يراجع المسودة ويوافق عليها، وعندها فقط تخرج البضاعة من بيروت.',
+ rcApp:'وافق عليها',rcAppV:'كريم · المدير · 09:41',
  rcRef:'تحويل',rcItem:'الصنف',rcItemV:'شريط LED&rlm; 5م',rcQty:'الكمية',rcRoute:'المسار',rcRouteV:'WH-01 بيروت ← WH-02 صيدا',rcEta:'الوصول المتوقع',rcBy:'سجّلها',rcByV:'هادي · Telegram · 09:41',
  rcDelta:'شريط LED&rlm; 5م في بيروت:',
  s3no:'الخطوة 3 من 4',s3h:'الشاحنة تتحرك على الخريطة',s3p:'التحويل يظهر مع عدّ تنازلي مباشر، فيرى الجميع ما على الطريق. تابع التمرير لتقود الشاحنة.',
@@ -107,7 +135,7 @@ const AR={
  p2t:'حركات لحظية',p2d:'كل إدخال وإخراج وتحويل يُسجّل مع من وماذا ومتى وأين.',
  p3t:'رؤية المخزون',p3d:'ابحث في أكثر من 10,000 صنف واعرف أي موقع يحمل كل صنف.',
  p4t:'قرارات أذكى',p4d:'تنبيهات النقص وعدم التطابق، وأجوبة واضحة على أسئلة المخزون.',
- ftEyebrow:'الميزات',ftH2:'مصمّم للعمل الحقيقي.',ftP:'كل ما تحتاجه لإدارة المخزون في عدة مواقع، بالوضوح والتحكم اللذين يستحقهما عملك.',
+ ftEyebrow:'الميزات',ftH2:'كل مستودع. كل حركة. رؤية واحدة واضحة.',ftP:'كل ما تحتاجه لإدارة المخزون في عدة مواقع، بالوضوح والتحكم اللذين يستحقهما عملك.',
  b1t:'البحث عن المخزون',b1d:'اعثر على الصنف الصحيح في الموقع الصحيح، أسرع.',
  b2t:'نظرة على الخريطة',b2d:'شاهد كل مستودعاتك وفروعك في عرض واحد.',
  b3t:'التحويلات والحركات',b3d:'تابع كل حركة مخزون بين المواقع.',livePill:'مباشر',
@@ -115,25 +143,61 @@ const AR={
  imEyebrow:'الاستيراد',imH2:'من أي مرفأ إلى رفّك.',
  imP:'كل شحنة مستوردة تُتابَع كتحويل واحد: بحراً أو جواً، ثم الجمارك، ثم بالشاحنة إلى المستودع. أينما كان المورّد، تعرف دائماً في أي مرحلة هي.',
  rbSea:'بحري',rbAir:'جوي',rbHint:'اسحب لتحريك الشحنة على مسارها. أوقات النقل أمثلة فقط؛ في ستاكو تحدد وقت الوصول لكل شحنة أو لكل مرحلة.',
- invH3:'ارفع الفاتورة. ستاكو يبني الشحنة.',invP:'أرسل فاتورة المورد أو قائمة التعبئة بصيغة PDF أو Excel أو صورة. ستاكو ينشئ الأصناف والشحنة القادمة.',
- invBtn:'اقرأها مجدداً',invMid:'الذكاء الاصطناعي يقرأ الأسطر',
+ invH3:'ارفع الفاتورة. ستاكو يجهّز مسودة الشحنة.',invP:'أرسل فاتورة المورّد أو قائمة التعبئة بصيغة PDF أو Excel أو صورة. الذكاء الاصطناعي يقرأ كل سطر ويجهّز مسودة. الأصناف الجديدة أو غير الواضحة تُعلَّم للمراجعة، ولا يُسجَّل شيء قبل أن يؤكّده شخص لديه صلاحية الموافقة.',
+ ivs1:'الذكاء الاصطناعي يقرأ',ivs2:'شخص يراجع',ivs3:'موافقة وتسجيل',spChk:'يحتاج تأكيداً قبل إنشائه',invMid:'الذكاء الاصطناعي يقرأ الأسطر',
  spLabel:'شحنة قادمة',spMode:'بحري',spFrom:'جبل علي',spPort:'مرفأ بيروت',spTo:'WH-02 صيدا',spItem:'الصنف',spQty:'الكمية',
  sp1:'شريط LED&rlm; 5م',sp2:'سماعات لاسلكية',sp3:'حصيرة يوغا',sp4:'صندوق تخزين',spNew:'صنف جديد',spNew2:'صنف جديد',
- spFoot1:'<b>1,200 وحدة</b> في الطريق · الوصول بعد حوالي 20 يوماً',spFoot2:'2 مطابقان · 2 جديدان',
- tmEyebrow:'الأدوار وسجل التدقيق',tmH2:'مصمّم لكل فريق المستودع.',tmP:'عشرون شخصاً، أربعة أدوار، وسجل واحد لكل حركة. كل إجراء يُحفظ مع من وماذا ومتى وأين، فيمكن تتبّع أي رقم إلى أصله.',
- ro1:'المالك',ro1v:'الخريطة والتقارير',ro1p:'يتابع الخريطة الحية والمخزون والتنبيهات والتقارير، ويوافق على التعديلات.',
- ro2:'مدير المستودع',ro2v:'التطبيق',ro2p:'واحد لكل موقع. يستلم الشحنات، يوافق على التحويلات، ويجري الجرد.',
- ro3:'فريق العمل',ro3v:'Telegram',ro3p:'معظم الفريق. يسجّلون الإدخال والإخراج والتحويلات عبر Telegram أو نموذج سريع في التطبيق.',
- ro4:'المشتريات',ro4v:'رفع الفواتير',ro4p:'يرفعون فواتير الموردين وقوائم التعبئة، ويتابعون الشحنات البحرية والجوية من أي بلد.',
- lgTitle:'كل رقم له أصل.',lgP:'سجل اليوم للمستودعات الثلاثة. قيود على سبيل المثال.',lgTime:'الوقت',lgWho:'من',lgWhat:'ماذا',lgWhere:'أين',
- lw1:'النظام',lv1:'عند الوصول',lk1:'إدخال',lx1:'40 × شريط LED&rlm; 5م',ll1:'WH-02 صيدا',
- lw2:'هادي',lv2:'Telegram',lk2:'تحويل',lx2:'40 × شريط LED&rlm; 5م',ll2:'WH-01 ← WH-02',
- lw3:'رنا',lv3:'رفع فاتورة',lk3:'شحنة',lx3:'1,200 وحدة · SHP-24017',ll3:'جبل علي ← WH-02',
- lw4:'عمر',lv4:'التطبيق',lk4:'إخراج',lx4:'12 × مروحة مكتبية',ll4:'WH-03 طرابلس',
- lw5:'مايا',lv5:'المالك · موافقة',lk5:'تعديل',lx5:'−3 × غطاء هاتف، جرد',ll5:'WH-01 بيروت',
+ spFoot1:'<b>1,200 وحدة</b> في الطريق · الوصول بعد حوالي 20 يوماً',
+ suEyebrow:'يعمل مع نظامك',suH2:'ابدأ من جديد، أو احتفظ بنظامك.',
+ suP:'ستاكو يمكن أن يدير مخزونك بالكامل، أو يضيف الخريطة والذكاء الاصطناعي فوق النظام الذي تستخدمه. في الحالتين، أنت تحدد أي نظام يحمل الأرقام المعتمدة.',
+ suA1:'الخيار 1',suA:'نظام مخزون كامل',suAp:'للفرق التي تعمل على Excel والفواتير الورقية وWhatsApp. ستاكو يصبح نظام المخزون لديك.',
+ suAl1:'المنتجات والأصناف والمخزون في كل موقع',suAl2:'الاستلام والإخراج والتحويل والجرد',suAl3:'الأدوار والموافقات والسجل الكامل',suAl4:'الخريطة الحية ولوحة المتابعة والتقارير',
+ suB1:'الخيار 2',suB:'الخريطة والذكاء الاصطناعي فوق نظام ERP لديك',suBp:'تستخدم Odoo أو SAP أو نظاماً آخر؟ احتفظ به. ستاكو يتصل به، يعرض مواقعه ومخزونه على الخريطة، ويضيف قراءة المستندات بالذكاء الاصطناعي.',
+ saT:'ستاكو · كل المواقع',saSub:'مباشر',sa1:'المستودعات والفروع',sa2:'حركات اليوم',sa3:'بانتظار الموافقة',sa4:'أصناف منخفضة',
+ syT:'نظامك ⇄ ستاكو',sySub:'آخر مزامنة قبل دقيقتين',syEx:'مثال',sy1:'المواقع',sy1v:'3 من 3',sy2:'المنتجات',sy3:'مستويات المخزون',sy3v:'محدّثة',sy4:'الإرسال إلى نظامك',sy4v:'1 بانتظار الموافقة',sy5:'التعارضات',
+ mdH:'أنت تختار حدود الاتصال',
+ md1t:'قراءة فقط',md1p:'ستاكو يعرض بيانات نظامك على الخريطة، ويبقى نظامك هو المرجع.',
+ md2t:'مسودة للموافقة',md2p:'ستاكو يجهّز السجلات من المستندات، وشخص يوافق عليها قبل أن يصل أي شيء إلى نظامك.',
+ md3t:'إرسال بعد الموافقة',md3p:'المعاملات المعتمدة تُرسل إلى نظامك مرة واحدة مع رقم مرجعي، فلا يُسجَّل شيء مرتين.',
+ suNote:'يُجهَّز الربط لكل عميل على حدة. أخبرنا بالنظام الذي تستخدمه ونؤكّد لك ما هو ممكن قبل أي التزام.',suCta:'ناقش نظامك معنا',
+ ucEyebrow:'لمن ستاكو',ucH2:'مصمّم للشركات التي تنقل البضاعة.',ucP:'إذا كان مخزونك في أكثر من مكان، أو يصلك بفواتير موردين طويلة، فستاكو صُمّم لك.',ucW:'مع ستاكو',
+ uc1t:'تجار الجملة والموزّعون',uc1p:'عدة مستودعات، وشاحنات تتنقّل بينها طوال اليوم.',uc1s:'كل مستودع وكل تحويل على خريطة واحدة، مع من نقل ماذا.',
+ uc2t:'متاجر بعدة فروع',uc2p:'زبون يطلب صنفاً نفد هنا لكنه موجود في فرع آخر.',uc2s:'ابحث مرة واحدة، اعرف أي فرع لديه الصنف، وحوّله بموافقة.',
+ uc3t:'المستوردون وقطع الغيار',uc3p:'آلاف الأصناف، وحاويات تصل مع فواتير طويلة.',uc3s:'ارفع الفاتورة، راجع المسودة، وتابع الشحنة من المرفأ إلى الرف.',
+ uc4t:'المصانع الصغيرة',uc4p:'مواد خام تدخل، بضاعة جاهزة تخرج، والجرد نادراً ما يتطابق.',uc4s:'استلام وإخراج وجرد لكل موقع، مع تعديلات تحتاج إلى موافقة.',
+ rlEyebrow:'الأدوار والصلاحيات',rlH2:'لكل شخص الصلاحية المناسبة.',rlP:'تسعة أدوار جاهزة، تُضبط حسب الإجراء وحسب الموقع. من يجهّز المعاملة لا يوافق عليها. اختر دوراً لترى ما يمكنه فعله.',
+ lgTitle:'كل رقم له أصل.',lgP:'سجل اليوم للمستودعات الثلاثة. قيود على سبيل المثال.',lgTime:'الوقت',lgWho:'من',lgWhat:'ماذا',lgWhere:'أين',lgChg:'قبل ← بعد',
+ lw1:'النظام',lv1:'عند الوصول',lk1:'إدخال',lx1:'40 × شريط LED&rlm; 5م',ll1:'WH-02 صيدا',lc1:'85 ← 125',
+ lw2:'هادي',lv2:'Telegram · بموافقة كريم',lk2:'تحويل',lx2:'40 × شريط LED&rlm; 5م',ll2:'WH-01 ← WH-02',lc2:'640 ← 600',
+ lw3:'رنا',lv3:'فاتورة · بموافقة مايا',lk3:'شحنة',lx3:'1,200 وحدة · SHP-24017',ll3:'جبل علي ← WH-02',lc3:'+1,200 قادمة',
+ lw4:'عمر',lv4:'التطبيق',lk4:'إخراج',lx4:'12 × مروحة مكتبية',ll4:'WH-03 طرابلس',lc4:'95 ← 83',
+ lw5:'مايا',lv5:'المالكة · موافقة',lk5:'تعديل',lx5:'−3 × غطاء هاتف، جرد',ll5:'WH-01 بيروت',lc5:'214 ← 211',
  lgNote:'السجل يكبر فقط. التصحيح قيد جديد، وليس تعديلاً.',
- ctEyebrow:'وصول مبكر',ctH2:'شاهد مستودعاتك على الخريطة.',
- ctP:'نُطلق ستاكو مع أول مجموعة من شركات التجارة والتوزيع في لبنان والخليج. أخبرنا كيف تعمل، ونريك كيف يعمل ستاكو على شبكتك أنت.',
+ tsEyebrow:'مبني على الثقة',tsH2:'أرقام يعتمد عليها كل فريقك.',tsP:'سجلات المخزون لا تفيد إلا إذا وثق بها الناس. هذه الضمانات موجودة في كل حساب على ستاكو.',
+ ts1t:'الموافقة لشخص، لا للذكاء الاصطناعي وحده',ts1p:'الذكاء الاصطناعي يجهّز المسودات، والمخزون لا يتغيّر إلا بعد تأكيد شخص مخوَّل.',
+ ts2t:'تحقّق قبل الاعتماد',ts2p:'المنتجات والمواقع والكميات والوحدات والحقول المطلوبة تُفحص قبل تأكيد أي معاملة.',
+ ts3t:'لا تسجيل مزدوج',ts3p:'كل استيراد وكل إرسال يحمل رقماً مرجعياً، فلا تُسجَّل الفاتورة نفسها أو المزامنة نفسها مرتين.',
+ ts4t:'سجل يكبر ولا يُمحى',ts4p:'من وماذا ومتى وأين، مع القيم قبل وبعد. التصحيح قيد جديد، وليس تعديلاً.',
+ ts5t:'بياناتك ملكك',ts5p:'بيانات كل شركة منفصلة تماماً عن غيرها، والوصول إليها يتبع الأدوار التي تحددها.',
+ ts6t:'مزامنة واضحة',ts6p:'عند الربط مع نظامك، تظهر حالة المزامنة والأخطاء والتعارضات، وتُعاد المحاولات الفاشلة بأمان.',
+ pnEyebrow:'الخطط',pnH2:'سعر يناسب طريقة عملك.',pnP:'نحدد الأسعار مع أول عملائنا، لذلك كل خطة بعرض سعر خاص. السعر يعتمد على بضعة عوامل، وتدفع فقط مقابل ما يحتاجه عملك.',
+ pn1t:'نظام مخزون كامل',pn1p:'المنتجات والمخزون والمواقع والتحويلات والسجل والتقارير والصلاحيات.',pn1b:'شهري أو سنوي، حسب عدد المواقع وحجم العمل',
+ pn2t:'الخريطة والربط',pn2p:'الخريطة الحية والذكاء الاصطناعي فوق النظام الذي تستخدمه.',pn2b:'خطة أساسية، مع فئة للربط والمواقع',
+ pn3t:'مستندات بالذكاء الاصطناعي',pn3tag:'إضافة',pn3p:'قراءة الفواتير والمستندات وتحويلها إلى مسودات للمراجعة.',pn3b:'كمية شهرية مشمولة، والمزيد عند الحاجة',
+ pnDimH:'عرض السعر يعتمد على',pnD1:'عدد المواقع',pnD2:'المستخدمون والأدوار',pnD3:'عدد المستندات شهرياً',pnD4:'الربط مع نظامك',pnD5:'التجهيز واستيراد البيانات',pnD6:'مستوى الدعم',
+ pnNote:'التجهيز واستيراد البيانات والتدريب رسوم لمرة واحدة حسب حجم العمل. الربط الخاص يُسعَّر بشكل منفصل.',pnCta:'اطلب عرض سعر',
+ fqEyebrow:'أسئلة شائعة',fqH2:'أسئلة نسمعها كثيراً.',fqP:'سؤال آخر؟ <a href="#contact">راسلنا</a> وسيجيبك شخص من فريقنا.',
+ q1:'هل عليّ استبدال نظامي الحالي؟',a1:'لا. إذا كنت تستخدم نظام ERP مثل Odoo أو SAP، يمكن لستاكو أن يعمل فوقه ويضيف الخريطة وقراءة المستندات. وإذا لم يكن لديك نظام، يمكن أن يكون ستاكو نظام مخزونك الكامل.',
+ q2:'هل يغيّر الذكاء الاصطناعي مخزوني وحده؟',a2:'لا. الذكاء الاصطناعي يقرأ الرسائل والمستندات ويجهّز مسودات. الأصناف الجديدة أو غير الواضحة تُعلَّم، ولا يتغيّر المخزون إلا بعد أن يؤكّد المسودة شخص لديه صلاحية الموافقة.',
+ q3:'ما المستندات التي يقرأها ستاكو؟',a3:'فواتير الموردين وقوائم التعبئة، بصيغة PDF أو Excel أو صورة. يستخرج ستاكو المورّد ورقم الفاتورة والتاريخ والأصناف والكميات والوحدات والمجاميع عندما تكون موجودة في المستند.',
+ q4:'لمن تعود البيانات؟',a4:'لك أنت. بيانات كل شركة منفصلة، ولا يراها إلا من تمنحهم الصلاحية.',
+ q5:'هل يمكنني التحكم بمن يفعل ماذا؟',a5:'نعم. الصلاحيات تُضبط حسب الإجراء وحسب الموقع، انطلاقاً من تسعة أدوار جاهزة يمكنك تعديلها. من يجهّز المعاملة لا يستطيع الموافقة عليها.',
+ q6:'هل يمكنكم نقل ملفات Excel الحالية؟',a6:'نعم. التجهيز يشمل استيراد منتجاتك ومواقعك ومخزونك الافتتاحي من ملفاتك الحالية، فيبدأ فريقك بأرقام حقيقية.',
+ q7:'كم يستغرق التجهيز؟',a7:'يعتمد على عدد المواقع والمنتجات لديك، وعلى ما إذا كنا سنربط مع نظام قائم. نتفق على خطة واضحة خلال العرض التجريبي.',
+ q8:'كم تبلغ كلفة ستاكو؟',a8:'السعر يعتمد على عدد المواقع والمستخدمين وحجم المستندات والربط والتجهيز. أخبرنا كيف تعمل ونرسل لك عرض سعر.',
+ ctEyebrow:'احجز عرضاً',ctH2:'احصل على رؤية أوضح لمخزونك.',
+ ctP:'أخبرنا كيف تعمل اليوم، على Excel أو الورق أو نظام ERP، ونريك ستاكو على مستودعاتك وفروعك أنت.',
+ fmSys:'ماذا تستخدم اليوم؟',sys1:'Excel أو ورق',sys2:'نظام ERP مثل Odoo أو SAP',sys3:'شيء آخر',
  ctMailL:'البريد الإلكتروني',ctWaL:'WhatsApp',ctCopy:'نسخ',ctCopy2:'نسخ',
  fmTitle:'أخبرنا عن مخزونك',fmSub:'يأخذ دقيقة واحدة. نردّ عليك بموعد لعرض قصير.',
  fmName:'الاسم الكامل',fmCompany:'الشركة <em>(اختياري)</em>',fmPhone:'الهاتف أو WhatsApp',fmEmail:'البريد الإلكتروني <em>(اختياري)</em>',
@@ -141,7 +205,7 @@ const AR={
  fmErrName:'يرجى إدخال اسمك.',fmErrPhone:'يرجى إدخال رقم هاتف أو WhatsApp.',
  fmSend:'اطلب عرضاً تجريبياً',fmNote:'يُفتح طلبك في WhatsApp جاهزاً للإرسال إلى فريقنا.',
  fmOkT:'طلبك جاهز',fmOkP:'أرسله عبر WhatsApp ليصل مباشرةً إلى فريقنا. هذا نصّه:',fmOkBtn:'أرسل عبر WhatsApp',fmCopyMsg:'انسخ الرسالة',fmEdit:'عدّل التفاصيل',
- ftStrip:'إدارة مخزون أذكى. في كل موقع.',ftCta:'احجز عرضاً',ftBy:'منتج من',ftRights:'© 2026 أيفِن · بيروت'
+ ftStrip:'إدارة مخزون أذكى. في كل موقع.',ftCta:'احجز عرضاً',ftTag:'مخزونك دايماً قدّام عينك',ftBy:'منتج من',ftRights:'© 2026 أيفِن · بيروت'
 };
 const EN={};$$('[data-i]').forEach(el=>{EN[el.dataset.i]=el.innerHTML});
 
@@ -713,7 +777,7 @@ $('#chTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(
     e.preventDefault();
     const a=check($('#fwName'),$('#fName'),v=>v.length>1),b=check($('#fwPhone'),$('#fPhone'),v=>v.replace(/\D/g,'').length>=7);
     if(!a){$('#fName').focus();return}if(!b){$('#fPhone').focus();return}
-    const d={name:$('#fName').value.trim(),company:$('#fCompany').value.trim(),phone:$('#fPhone').value.trim(),email:$('#fEmail').value.trim(),wh:(form.querySelector('input[name=wh]:checked')||{}).value||'-',msg:$('#fMsg').value.trim()};
+    const d={name:$('#fName').value.trim(),company:$('#fCompany').value.trim(),phone:$('#fPhone').value.trim(),email:$('#fEmail').value.trim(),wh:(form.querySelector('input[name=wh]:checked')||{}).value||'-',sys:((form.querySelector('input[name=sys]:checked')||{}).nextElementSibling||{}).textContent||'-',msg:$('#fMsg').value.trim()};
     lastMsg=t('fmText')(d);$('#fOkMsg').textContent=lastMsg;$('#fOkLink').href='https://wa.me/96171313917?text='+encodeURIComponent(lastMsg);
     body.hidden=true;ok.hidden=false;ok.focus();
   });
@@ -818,14 +882,42 @@ function renderRibbon(){
 $('#rbRange').addEventListener('input',renderRibbon);
 ['Sea','Air'].forEach(m=>$('#rb'+m).addEventListener('click',()=>{rbMode=m.toLowerCase();$('#rbSea').setAttribute('aria-pressed',rbMode==='sea');$('#rbAir').setAttribute('aria-pressed',rbMode==='air');renderRibbon()}));
 
-/* ================= invoice reading ================= */
+/* ================= invoice: AI reads → a person reviews → approved (loops while visible) ================= */
+const INV_K={read:'Read',review:'Draft',ok:'Ok'},INV_P=['read','review','ok'];
+let invPh='ok',invVis=false,invT=0;
+function invPhase(p){
+  invPh=p;const sc=$('#shipc'),k=INV_K[p],at=INV_P.indexOf(p);
+  sc.classList.remove('p-read','p-review','p-ok');sc.classList.add('p-'+p);
+  $('#spState').textContent=t('iv'+k);$('#spFoot2').textContent=t('spF2'+k);
+  $('#rvT').textContent=t('rvT'+k);$('#rvS').textContent=t('rvS'+k);$('#rvB').textContent=p==='ok'?'':t('rvBtn');
+  $$('.inv-steps li').forEach(li=>{const i=INV_P.indexOf(li.dataset.p);li.classList.toggle('on',i===at);li.classList.toggle('done',i<at)});
+}
 function readInvoice(){
-  if(RM)return;const pp=$('#paper'),rows=$$('#ppRows tr'),out=$$('#spRows tr');
+  const pp=$('#paper'),rows=$$('#ppRows tr'),out=$$('#spRows tr');
   pp.classList.remove('reading');void pp.offsetWidth;pp.classList.add('reading');
   rows.forEach((r,i)=>{setTimeout(()=>{r.classList.add('hit');out[i].classList.remove('flash');void out[i].offsetWidth;out[i].classList.add('flash');setTimeout(()=>r.classList.remove('hit'),700)},350+i*360)});
 }
-$('#invBtn').addEventListener('click',readInvoice);
-new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){readInvoice();o.disconnect()}},{threshold:.5}).observe($('#paper'));
+function invCycle(){
+  clearTimeout(invT);if(!invVis||document.hidden)return;
+  invPhase('read');readInvoice();
+  invT=setTimeout(()=>{invPhase('review');invT=setTimeout(()=>{invPhase('ok');invT=setTimeout(invCycle,4200)},3000)},2400);
+}
+if(!RM)new IntersectionObserver(e=>{const v=e[0].isIntersecting;if(v&&!invVis){invVis=true;invCycle()}else if(!v){invVis=false;clearTimeout(invT)}},{threshold:.35}).observe($('#inv'));
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&invVis)invCycle()});
+
+/* ================= roles and permissions ================= */
+// one letter per action in T.acts: y allowed · s own sites only · d draft that needs approval · n no access
+const RLV=['yyyyyyyy','ynnnnnyy','ssssdssn','sndnnnnn','yydnnyyn','ndnnnnnn','ynnydyyn','yndnnnnn','ynnnnyyn'];
+let rlSel=2;// open on the warehouse manager: a mix of every permission level
+function renderRoleCard(){
+  const r=t('roles')[rlSel],lv=t('lv');
+  $('#rlCard').innerHTML=`<div class="rl-top"><div><small>${r[1]}</small><h3>${r[0]}</h3></div><span class="via">${t('rlScope')}: ${r[3]}</span></div><p>${r[2]}</p><ul class="perm">${t('acts').map((a,k)=>{const c=RLV[rlSel][k];return`<li class="${c}"><span>${a}</span><span class="lv ${c}">${lv[c]}</span></li>`}).join('')}</ul>`;
+}
+function renderRoles(){
+  $('#rlPick').innerHTML=t('roles').map((r,i)=>`<button type="button" data-r="${i}" aria-pressed="${i===rlSel}"><b>${r[0]}</b><small>${r[1]}</small></button>`).join('');
+  renderRoleCard();
+}
+$('#rlPick').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;rlSel=+b.dataset.r;$$('#rlPick button').forEach(x=>x.setAttribute('aria-pressed',x===b));renderRoleCard()});
 
 /* ================= language ================= */
 function applyLang(l){
@@ -835,6 +927,7 @@ function applyLang(l){
   [storyView,appView].forEach(v=>v.labels());
   storyStatic();renderSide();renderKpis();ask(askQ,true);renderOrigins();renderRibbon();storyUpdate();
   renderToast();renderTry();srchRender();mwTabs();mwRender();renderNotes(false);renderTransit();drawChart();window.__formPh&&window.__formPh();
+  invPhase(invPh);renderRoles();
   try{localStorage.setItem('stacko-lang',l)}catch(e){}
 }
 $('#langBtn').addEventListener('click',()=>applyLang(lang==='en'?'ar':'en'));

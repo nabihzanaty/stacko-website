@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Stacko | Live Inventory &amp; Warehouse Management for Lebanon and the GCC</title>
-<meta name="description" content="Stacko puts every warehouse, item and shipment on one live map. Track stock across locations, log transfers in seconds and follow imports from supplier to shelf. A product by AIPHIN.">
+<meta name="description" content="Stacko puts every warehouse, item and shipment on one live map. Track stock across locations, turn invoices into drafts your team approves, and connect to the system you already use. A product by AIPHIN.">
 <meta name="keywords" content="inventory management software, warehouse management system, stock tracking, multi-warehouse inventory, shipment tracking, import tracking, Lebanon, GCC, برنامج إدارة المخزون, إدارة المستودعات">
 <meta name="author" content="AIPHIN">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -73,6 +73,19 @@
       "image": "https://stacko.aiphin.me/assets/images/og-image.jpg",
       "areaServed": ["LB", "SA", "AE", "QA", "KW", "BH", "OM"],
       "publisher": { "@id": "https://aiphin.me/#org" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Do I have to replace my current system?", "acceptedAnswer": { "@type": "Answer", "text": "No. If you already use an ERP such as Odoo or SAP, Stacko can sit on top of it and add the map and AI document capture. If you don't have a system, Stacko can be your full inventory." } },
+        { "@type": "Question", "name": "Does the AI change my stock on its own?", "acceptedAnswer": { "@type": "Answer", "text": "No. The AI reads messages and documents and prepares drafts. New or unclear items are flagged, and stock only changes after someone with approval rights confirms the draft." } },
+        { "@type": "Question", "name": "What documents can Stacko read?", "acceptedAnswer": { "@type": "Answer", "text": "Supplier invoices and packing lists, as a PDF, an Excel file or a photo. Stacko picks out the supplier, invoice number, date, items, quantities, units and totals when they're on the document." } },
+        { "@type": "Question", "name": "Who owns the data?", "acceptedAnswer": { "@type": "Answer", "text": "You do. Each company's data is kept separate, and only the people you give access to can see it." } },
+        { "@type": "Question", "name": "Can I control who does what?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Permissions are set per action and per location, starting from nine ready-made roles you can adjust. The person who drafts a transaction can't approve it." } },
+        { "@type": "Question", "name": "Can you bring in our existing Excel sheets?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Setup includes importing your products, locations and opening stock from your current files, so your team starts with real numbers." } },
+        { "@type": "Question", "name": "How long does setup take?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on how many locations and products you have, and whether we connect to an existing system. We agree on a clear plan during the demo." } },
+        { "@type": "Question", "name": "How much does Stacko cost?", "acceptedAnswer": { "@type": "Answer", "text": "The price depends on your locations, users, AI document volume, integration and setup. Tell us how you work and we'll send you a quote." } }
+      ]
     }
   ]
 }
@@ -101,9 +114,10 @@
     <div class="nav-links">
       <a href="#how" data-i="navHow">How it works</a>
       <a href="#product" data-i="navProduct">The app</a>
-      <a href="#features" data-i="navFeatures">Features</a>
-      <a href="#imports" data-i="navImports">Imports</a>
-      <a href="#teams" data-i="navTeams">Teams</a>
+      <a href="#setup" data-i="navSetup">Integrations</a>
+      <a href="#roles" data-i="navRoles">Roles</a>
+      <a href="#plans" data-i="navPlans" hidden>Plans</a>
+      <a href="#faq" data-i="navFaq">FAQ</a>
     </div>
     <div class="nav-r">
       <button class="lang-btn" id="langBtn" type="button" lang="ar">العربية</button>
@@ -144,7 +158,6 @@
   </div>
   <div class="wrap hero-in">
     <div class="hero-copy">
-      <span class="pill"><span class="livedot"></span><span data-i="heroPill">Early access · Lebanon &amp; the GCC</span></span>
       <h1 class="display" id="h1" data-i="heroH1">Your stock, always in sight</h1>
       <p class="lede" data-i="heroLede">Stacko puts every warehouse, item and shipment on one live map. Your team logs a move in about 10 seconds, and the truck starts driving.</p>
       <div class="cta-row">
@@ -154,7 +167,6 @@
     </div>
   </div>
   <div class="wrap hero-foot">
-    <p class="cred" data-i="heroCred">Designed with a Lebanese importer running <b>3 warehouses</b>, <b>~10,000 SKUs</b>, <b>~20 staff</b> and new shipments every month.</p>
     <div class="toast" id="toast" role="status"><span class="t-ic ok"><svg><use href="#i-check"/></svg></span><span><b>Stock transfer completed</b><small>From Beirut to Tripoli</small></span><svg class="t-go flip"><use href="#i-go"/></svg></div>
   </div>
 </section>
@@ -210,13 +222,13 @@
       <div class="tg">
         <div class="tg-head"><span class="tg-av"><svg aria-hidden="true"><use href="#mark"/></svg></span><span><b data-i="tgName">Stacko bot</b><span data-i="tgSub">Telegram · Beirut team</span></span></div>
         <div class="bub me"><span data-i="tgMsg">sent 40 LED strips from Beirut to Sidon</span><small>09:41 ✓✓</small></div>
-        <div class="bub bot"><span data-i="tgBot">Got it. Logging a transfer from WH-01 Beirut to WH-02 Sidon.</span><small>09:41</small></div>
+        <div class="bub bot"><span data-i="tgBot">Got it. I drafted a transfer from WH-01 Beirut to WH-02 Sidon and sent it to Karim to approve.</span><small>09:41</small></div>
       </div>
     </div></div>
     <div class="step" data-s="2"><div class="card">
       <p class="stepno"><span data-i="s2no">Step 2 of 4</span><span class="trk"><i style="width:50%"></i></span></p>
-      <h3 class="h3" data-i="s2h">Stacko turns it into a record</h3>
-      <p data-i="s2p">AI reads the message, matches the item and both warehouses, and deducts the stock at the source.</p>
+      <h3 class="h3" data-i="s2h">Stacko drafts it. Karim approves it.</h3>
+      <p data-i="s2p">AI reads the message and matches the item and both warehouses. Karim, the Beirut manager, checks the draft and approves it. Only then does the stock leave Beirut.</p>
       <dl class="rec">
         <div><dt data-i="rcRef">Transfer</dt><dd class="tab">TRF-24018</dd></div>
         <div><dt data-i="rcItem">Item</dt><dd><span data-i="rcItemV">LED Strip 5m</span><small>SKU-10240</small></dd></div>
@@ -224,6 +236,7 @@
         <div><dt data-i="rcRoute">Route</dt><dd data-i="rcRouteV">WH-01 Beirut → WH-02 Sidon</dd></div>
         <div><dt data-i="rcEta">ETA</dt><dd class="tab" id="rcEta">1h 13m</dd></div>
         <div><dt data-i="rcBy">Logged by</dt><dd data-i="rcByV">Hadi · Telegram · 09:41</dd></div>
+        <div class="apv"><dt data-i="rcApp">Approved by</dt><dd><span class="ck"><svg><use href="#i-check"/></svg></span><span data-i="rcAppV">Karim · Manager · 09:41</span></dd></div>
       </dl>
       <p class="delta"><span data-i="rcDelta">LED Strip 5m in Beirut:</span> <b class="tab">640 <span class="flip" style="display:inline-block">→</span> 600</b></p>
     </div></div>
@@ -277,10 +290,14 @@
       </div>
     </div>
 
-    <div class="inv">
+    <div class="inv" id="inv">
       <div class="inv-copy">
-        <div><h3 class="h3" data-i="invH3">Upload the invoice. Stacko builds the shipment.</h3><p data-i="invP">Send the supplier's invoice or packing list as a PDF, an Excel file or a photo. Stacko creates the items and the incoming shipment for you.</p></div>
-        <button class="inv-btn" type="button" id="invBtn"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2.5v3h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="invBtn">Read it again</span></button>
+        <div><h3 class="h3" data-i="invH3">Upload the invoice. Stacko drafts the shipment.</h3><p data-i="invP">Send the supplier's invoice or packing list as a PDF, an Excel file or a photo. AI reads every line and prepares a draft. New or unclear items are flagged, and nothing is recorded until someone with approval rights confirms it.</p></div>
+        <ol class="inv-steps" aria-hidden="true">
+          <li data-p="read"><i>1</i><span data-i="ivs1">AI reads</span></li>
+          <li data-p="review"><i>2</i><span data-i="ivs2">A person reviews</span></li>
+          <li data-p="ok"><i>3</i><span data-i="ivs3">Approved and recorded</span></li>
+        </ol>
       </div>
       <div class="paper" id="paper" aria-label="Example supplier invoice">
         <div class="scan"></div>
@@ -302,19 +319,20 @@
         <svg class="arrow flip" viewBox="0 0 120 12"><path d="M2 6h112" stroke="#0895A6" stroke-width="2" stroke-dasharray="5 5"/><path d="M110 1.5 116 6l-6 4.5" fill="none" stroke="#0895A6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span data-i="invMid">AI reads the lines</span>
       </div>
-      <div class="shipc" id="shipc">
-        <div class="shipc-top"><div><small data-i="spLabel">Incoming shipment</small><b class="tab">SHP-24017</b></div><span class="mode-pill"><svg><use href="#i-ship"/></svg><span data-i="spMode">Sea</span></span></div>
-        <p class="shipc-route"><b data-i="spFrom">Jebel Ali</b><span class="flip" style="display:inline-block">→</span><b data-i="spPort">Port of Beirut</b><span class="flip" style="display:inline-block">→</span><b data-i="spTo">WH-02 Sidon</b></p>
+      <div class="shipc p-ok" id="shipc">
+        <div class="shipc-top"><div><small data-i="spLabel">Incoming shipment</small><b class="tab">SHP-24017</b></div><span class="st-pill" id="spState"></span></div>
+        <p class="shipc-route"><span class="mode-pill"><svg><use href="#i-ship"/></svg><span data-i="spMode">Sea</span></span><b data-i="spFrom">Jebel Ali</b><span class="flip" style="display:inline-block">→</span><b data-i="spPort">Port of Beirut</b><span class="flip" style="display:inline-block">→</span><b data-i="spTo">WH-02 Sidon</b></p>
         <table>
           <thead><tr><th data-i="spItem">Item</th><th class="n" data-i="spQty">Qty</th></tr></thead>
           <tbody id="spRows">
             <tr><td><span data-i="sp1">LED Strip 5m</span><small>SKU-10240</small></td><td class="n">600</td></tr>
             <tr><td><span data-i="sp2">Wireless Earbuds</span><small>SKU-10925</small></td><td class="n">300</td></tr>
-            <tr><td><span data-i="sp3">Yoga Mat</span><span class="newp" data-i="spNew">New item</span><small>SKU-11884</small></td><td class="n">180</td></tr>
-            <tr><td><span data-i="sp4">Storage Box</span><span class="newp" data-i="spNew2">New item</span><small>SKU-12432</small></td><td class="n">120</td></tr>
+            <tr class="nw"><td><span data-i="sp3">Yoga Mat</span><span class="newp" data-i="spNew">New item</span><small>SKU-11884</small><em class="chk" data-i="spChk">Confirm before it's created</em></td><td class="n">180</td></tr>
+            <tr class="nw"><td><span data-i="sp4">Storage Box</span><span class="newp" data-i="spNew2">New item</span><small>SKU-12432</small><em class="chk" data-i="spChk">Confirm before it's created</em></td><td class="n">120</td></tr>
           </tbody>
         </table>
-        <div class="shipc-foot"><span data-i="spFoot1"><b>1,200 units</b> on the way · ETA about 20 days</span><span data-i="spFoot2">2 matched · 2 created</span></div>
+        <div class="shipc-foot"><span data-i="spFoot1"><b>1,200 units</b> on the way · ETA about 20 days</span><span id="spFoot2"></span></div>
+        <div class="rv" aria-live="polite"><span class="rv-av" aria-hidden="true">M</span><span><b id="rvT"></b><small id="rvS"></small></span><span class="rv-btn" id="rvB" aria-hidden="true"></span></div>
       </div>
     </div>
   </div>
@@ -372,7 +390,7 @@
 <section class="features" id="features" aria-labelledby="ftH">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow" data-i="ftEyebrow">Features</p><h2 class="h2" id="ftH" data-i="ftH2">Built for real operations.</h2></div>
+      <div><p class="eyebrow" data-i="ftEyebrow">Features</p><h2 class="h2" id="ftH" data-i="ftH2">Every warehouse. Every movement. One clear view.</h2></div>
       <p class="lede" data-i="ftP">Everything you need to manage stock across locations, with the clarity and control your business deserves.</p>
     </div>
     <div class="bento">
@@ -401,37 +419,195 @@
   </div>
 </section>
 
-<!-- ============ TEAMS ============ -->
-<section class="teams" id="teams" aria-labelledby="tmH">
+<!-- ============ WORKS WITH YOUR SETUP ============ -->
+<section class="setup" id="setup" aria-labelledby="suH">
   <div class="wrap">
     <div class="sec-head">
-      <div><p class="eyebrow" data-i="tmEyebrow">Roles and audit trail</p><h2 class="h2" id="tmH" data-i="tmH2">Built for the whole floor.</h2></div>
-      <p class="lede" data-i="tmP">Twenty people, four roles, one record of every move. Every action is stored with who, what, when and where, so any number can be traced back.</p>
+      <div><p class="eyebrow" data-i="suEyebrow">Works with your setup</p><h2 class="h2" id="suH" data-i="suH2">Start fresh, or keep your system.</h2></div>
+      <p class="lede" data-i="suP">Stacko can run your whole inventory, or add its map and AI on top of the system you already use. Either way, you decide which system holds the final numbers.</p>
     </div>
-    <div class="tm-grid">
-      <div class="roles">
-        <div class="role"><h3 data-i="ro1">Owner</h3><span class="via"><svg viewBox="0 0 16 16"><path d="M8 1.5 1.5 4.5v7L8 14.5l6.5-3v-7zM8 3.2l4.6 2.1L8 7.4 3.4 5.3z"/></svg><span data-i="ro1v">Map &amp; reports</span></span><p data-i="ro1p">Watches the live map, stock, alerts and reports. Approves adjustments.</p></div>
-        <div class="role"><h3 data-i="ro2">Warehouse manager</h3><span class="via"><svg viewBox="0 0 16 16"><rect x="3" y="1.5" width="10" height="13" rx="2"/></svg><span data-i="ro2v">App</span></span><p data-i="ro2p">One per site. Receives shipments, approves transfers and runs counts.</p></div>
-        <div class="role"><h3 data-i="ro3">Floor staff</h3><span class="via"><svg viewBox="0 0 16 16"><path d="M14.6 2.2 1.6 7.3c-.6.2-.6 1 0 1.2l3.2 1.1 1.2 3.8c.2.5.8.6 1.1.2l1.8-1.7 3.3 2.4c.4.3 1 .1 1.1-.4l2.2-10.6c.1-.6-.4-1-.9-.8z"/></svg><span data-i="ro3v">Telegram</span></span><p data-i="ro3p">Most of the team. Logs stock in, out and transfers from Telegram or a quick form in the app.</p></div>
-        <div class="role"><h3 data-i="ro4">Purchasing</h3><span class="via"><svg viewBox="0 0 16 16"><path d="M3 1.5h7l3 3v10H3zM9.5 1.8v3h3"/></svg><span data-i="ro4v">Invoice upload</span></span><p data-i="ro4p">Uploads supplier invoices and packing lists, and tracks sea and air shipments from any country.</p></div>
-      </div>
-      <div class="ledger on-dark">
-        <h3 data-i="lgTitle">Every number traces back.</h3>
-        <p data-i="lgP">Today's ledger for the three warehouses. Example entries.</p>
-        <div class="lg-scroll">
-          <table class="lg">
-            <thead><tr><th data-i="lgTime">Time</th><th data-i="lgWho">Who</th><th data-i="lgWhat">What</th><th data-i="lgWhere">Where</th></tr></thead>
-            <tbody>
-              <tr><td class="t">10:54</td><td><span data-i="lw1">System</span><small data-i="lv1">on arrival</small></td><td><span class="k in" data-i="lk1">IN</span> <span data-i="lx1">40 × LED Strip 5m</span></td><td data-i="ll1">WH-02 Sidon</td></tr>
-              <tr><td class="t">09:41</td><td><span data-i="lw2">Hadi</span><small data-i="lv2">Telegram</small></td><td><span class="k tr" data-i="lk2">TRANSFER</span> <span data-i="lx2">40 × LED Strip 5m</span></td><td data-i="ll2">WH-01 → WH-02</td></tr>
-              <tr><td class="t">09:12</td><td><span data-i="lw3">Rana</span><small data-i="lv3">Invoice upload</small></td><td><span class="k shp" data-i="lk3">SHIPMENT</span> <span data-i="lx3">1,200 units · SHP-24017</span></td><td data-i="ll3">Jebel Ali → WH-02</td></tr>
-              <tr><td class="t">08:55</td><td><span data-i="lw4">Omar</span><small data-i="lv4">App</small></td><td><span class="k out" data-i="lk4">OUT</span> <span data-i="lx4">12 × Desk Fan</span></td><td data-i="ll4">WH-03 Tripoli</td></tr>
-              <tr><td class="t">08:30</td><td><span data-i="lw5">Maya</span><small data-i="lv5">Owner · approved</small></td><td><span class="k adj" data-i="lk5">ADJUST</span> <span data-i="lx5">−3 × Phone Case, count</span></td><td data-i="ll5">WH-01 Beirut</td></tr>
-            </tbody>
-          </table>
+    <div class="su-grid">
+      <article class="su-card">
+        <span class="su-tag" data-i="suA1">Option 1</span>
+        <h3 data-i="suA">Full inventory</h3>
+        <p data-i="suAp">For teams running on Excel, paper invoices and WhatsApp. Stacko becomes your inventory system.</p>
+        <ul class="ticks">
+          <li data-i="suAl1">Products, SKUs and stock per location</li>
+          <li data-i="suAl2">Receipts, issues, transfers and counts</li>
+          <li data-i="suAl3">Roles, approvals and full history</li>
+          <li data-i="suAl4">Live map, dashboard and reports</li>
+        </ul>
+        <div class="sync lt">
+          <div class="sy-top"><div><b data-i="saT">Stacko · all locations</b><small><span class="livedot"></span><span data-i="saSub">Live</span></small></div><span class="tagx" data-i="syEx">Example</span></div>
+          <dl>
+            <div><dt data-i="sa1">Warehouses and branches</dt><dd>3</dd></div>
+            <div><dt data-i="sa2">Moves logged today</dt><dd>46</dd></div>
+            <div><dt data-i="sa3">Waiting for approval</dt><dd class="hold">2</dd></div>
+            <div><dt data-i="sa4">Low-stock lines</dt><dd>9</dd></div>
+          </dl>
         </div>
-        <p class="lg-note"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2.5 3.4v4.2c0 3.2 2.3 6.1 5.5 6.9 3.2-.8 5.5-3.7 5.5-6.9V3.4z"/></svg><span data-i="lgNote">The ledger only grows. A correction is a new entry, never an edit.</span></p>
+      </article>
+      <article class="su-card dark on-dark">
+        <span class="su-tag" data-i="suB1">Option 2</span>
+        <h3 data-i="suB">Map and AI on top of your ERP</h3>
+        <p data-i="suBp">Already on Odoo, SAP or another system? Keep it. Stacko connects to it, shows its locations and stock on the map, and adds AI document capture.</p>
+        <div class="sync">
+          <div class="sy-top"><div><b data-i="syT">Your ERP ⇄ Stacko</b><small><span class="livedot"></span><span data-i="sySub">Synced 2 min ago</span></small></div><span class="tagx" data-i="syEx">Example</span></div>
+          <dl>
+            <div><dt data-i="sy1">Locations</dt><dd data-i="sy1v">3 of 3</dd></div>
+            <div><dt data-i="sy2">Products</dt><dd>10,482</dd></div>
+            <div><dt data-i="sy3">Stock levels</dt><dd data-i="sy3v">Up to date</dd></div>
+            <div><dt data-i="sy4">Write-back</dt><dd class="hold" data-i="sy4v">1 waiting for approval</dd></div>
+            <div><dt data-i="sy5">Conflicts</dt><dd>0</dd></div>
+          </dl>
+        </div>
+      </article>
+    </div>
+    <p class="modes-h" data-i="mdH">You choose how far the connection goes</p>
+    <div class="modes">
+      <div class="mode"><b><i>1</i><span data-i="md1t">Read-only</span></b><span data-i="md1p">Stacko shows your ERP data on the map. Your ERP stays the source of truth.</span></div>
+      <div class="mode"><b><i>2</i><span data-i="md2t">Draft for approval</span></b><span data-i="md2p">Stacko prepares records from documents. A person approves them before anything reaches your ERP.</span></div>
+      <div class="mode"><b><i>3</i><span data-i="md3t">Approved write-back</span></b><span data-i="md3p">Approved transactions are written back once, with a reference, so nothing is recorded twice.</span></div>
+    </div>
+    <div class="su-foot">
+      <p data-i="suNote">Connectors are set up per customer. Tell us which system you use and we'll confirm what's possible before you commit.</p>
+      <a class="btn btn-primary" href="#contact" data-i="suCta">Discuss your setup</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ USE CASES ============ -->
+<section class="usecases" id="usecases" aria-labelledby="ucH">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow" data-i="ucEyebrow">Who it's for</p><h2 class="h2" id="ucH" data-i="ucH2">Made for businesses that move stock.</h2></div>
+      <p class="lede" data-i="ucP">If your stock sits in more than one place, or arrives on long supplier invoices, Stacko was built for you.</p>
+    </div>
+    <div class="uc-grid">
+      <article class="uc">
+        <span class="bx-ico"><svg viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5V20H3z"/><path d="M7 20v-6h10v6M7 17h10"/></svg></span>
+        <h3 data-i="uc1t">Wholesalers and distributors</h3>
+        <p data-i="uc1p">Several warehouses, and trucks moving between them all day.</p>
+        <p class="with"><b data-i="ucW">With Stacko</b><span data-i="uc1s">Every warehouse and transfer on one map, with who moved what.</span></p>
+      </article>
+      <article class="uc">
+        <span class="bx-ico"><svg viewBox="0 0 24 24"><path d="M4 9h16l-1.2-4H5.2z"/><path d="M5 9v11h14V9M10 20v-5h4v5"/></svg></span>
+        <h3 data-i="uc2t">Multi-branch retailers</h3>
+        <p data-i="uc2p">A customer wants an item that's out here but sitting in another branch.</p>
+        <p class="with"><b data-i="ucW">With Stacko</b><span data-i="uc2s">Search once, see which branch has it, and transfer it with approval.</span></p>
+      </article>
+      <article class="uc">
+        <span class="bx-ico"><svg viewBox="0 0 24 24"><path d="M2.5 15h19l-2.6 4.5H5.1z"/><path d="M5 15v-4h5v4M10 15V8h5v7M15 15v-4h4v4"/></svg></span>
+        <h3 data-i="uc3t">Importers and spare parts</h3>
+        <p data-i="uc3p">Thousands of SKUs, and containers that arrive with long invoices.</p>
+        <p class="with"><b data-i="ucW">With Stacko</b><span data-i="uc3s">Upload the invoice, review the draft, and follow it from port to shelf.</span></p>
+      </article>
+      <article class="uc">
+        <span class="bx-ico"><svg viewBox="0 0 24 24"><path d="M3 20V10l5 3V10l5 3V6h4l1 14z"/><path d="M3 20h18"/></svg></span>
+        <h3 data-i="uc4t">Small manufacturers</h3>
+        <p data-i="uc4p">Materials come in, finished goods go out, and counts rarely match.</p>
+        <p class="with"><b data-i="ucW">With Stacko</b><span data-i="uc4s">Receipts, issues and counts per location, with approved adjustments.</span></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROLES & PERMISSIONS ============ -->
+<section class="roles-sec" id="roles" aria-labelledby="rlH">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow" data-i="rlEyebrow">Roles and permissions</p><h2 class="h2" id="rlH" data-i="rlH2">The right access for every person.</h2></div>
+      <p class="lede" data-i="rlP">Nine ready-made roles, set per action and per location. Whoever drafts a transaction can't approve it. Pick a role to see what it can do.</p>
+    </div>
+    <div class="rl-grid">
+      <div class="rl-pick" id="rlPick" role="group" aria-label="Roles"></div>
+      <div class="rl-card" id="rlCard" aria-live="polite"></div>
+    </div>
+    <div class="ledger on-dark">
+      <h3 data-i="lgTitle">Every number traces back.</h3>
+      <p data-i="lgP">Today's ledger for the three warehouses. Example entries.</p>
+      <div class="lg-scroll">
+        <table class="lg">
+          <thead><tr><th data-i="lgTime">Time</th><th data-i="lgWho">Who</th><th data-i="lgWhat">What</th><th data-i="lgWhere">Where</th><th data-i="lgChg">Before → after</th></tr></thead>
+          <tbody>
+            <tr><td class="t">10:54</td><td><span data-i="lw1">System</span><small data-i="lv1">on arrival</small></td><td><span class="k in" data-i="lk1">IN</span> <span data-i="lx1">40 × LED Strip 5m</span></td><td data-i="ll1">WH-02 Sidon</td><td class="c" data-i="lc1">85 → 125</td></tr>
+            <tr><td class="t">09:41</td><td><span data-i="lw2">Hadi</span><small data-i="lv2">Telegram · approved by Karim</small></td><td><span class="k tr" data-i="lk2">TRANSFER</span> <span data-i="lx2">40 × LED Strip 5m</span></td><td data-i="ll2">WH-01 → WH-02</td><td class="c" data-i="lc2">640 → 600</td></tr>
+            <tr><td class="t">09:12</td><td><span data-i="lw3">Rana</span><small data-i="lv3">Invoice · approved by Maya</small></td><td><span class="k shp" data-i="lk3">SHIPMENT</span> <span data-i="lx3">1,200 units · SHP-24017</span></td><td data-i="ll3">Jebel Ali → WH-02</td><td class="c" data-i="lc3">+1,200 incoming</td></tr>
+            <tr><td class="t">08:55</td><td><span data-i="lw4">Omar</span><small data-i="lv4">App</small></td><td><span class="k out" data-i="lk4">OUT</span> <span data-i="lx4">12 × Desk Fan</span></td><td data-i="ll4">WH-03 Tripoli</td><td class="c" data-i="lc4">95 → 83</td></tr>
+            <tr><td class="t">08:30</td><td><span data-i="lw5">Maya</span><small data-i="lv5">Owner · approved</small></td><td><span class="k adj" data-i="lk5">ADJUST</span> <span data-i="lx5">−3 × Phone Case, count</span></td><td data-i="ll5">WH-01 Beirut</td><td class="c" data-i="lc5">214 → 211</td></tr>
+          </tbody>
+        </table>
       </div>
+      <p class="lg-note"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 2.5 3.4v4.2c0 3.2 2.3 6.1 5.5 6.9 3.2-.8 5.5-3.7 5.5-6.9V3.4z"/></svg><span data-i="lgNote">The ledger only grows. A correction is a new entry, never an edit.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section class="trust on-dark" id="trust" aria-labelledby="tsH">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow" data-i="tsEyebrow">Built to be trusted</p><h2 class="h2" id="tsH" data-i="tsH2">Numbers your whole team can rely on.</h2></div>
+      <p class="lede" data-i="tsP">Stock records only help if people trust them. These safeguards are built into every Stacko account.</p>
+    </div>
+    <div class="ts-grid">
+      <article class="ts-item"><span class="bx-ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5 1.6 0 3 .4 4.1 1.2M14.5 18.5l2.2 2.2 4.8-4.8"/></svg></span><h3 data-i="ts1t">People approve, not just AI</h3><p data-i="ts1p">AI prepares drafts. Stock changes only after an authorised person confirms them.</p></article>
+      <article class="ts-item"><span class="bx-ico"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.5"/><path d="m8 9 1.6 1.6L12.5 7.7M8 15.5l1.6 1.6 2.9-2.9M14.5 9.5H17M14.5 16H17"/></svg></span><h3 data-i="ts2t">Checked before it counts</h3><p data-i="ts2p">Products, locations, quantities, units and required fields are checked before a transaction is confirmed.</p></article>
+      <article class="ts-item"><span class="bx-ico"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="11" height="13" rx="2"/><path d="M8 4h11a2 2 0 0 1 2 2v11M6 13.5h5"/></svg></span><h3 data-i="ts3t">No double entries</h3><p data-i="ts3p">Every import and write-back carries a reference, so the same invoice or sync is never recorded twice.</p></article>
+      <article class="ts-item"><span class="bx-ico"><svg viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6"/><path d="M3 4v4h4M12 7.5V12l3 2"/></svg></span><h3 data-i="ts4t">A history that only grows</h3><p data-i="ts4p">Who, what, when and where, with before and after values. A correction is a new entry, never an edit.</p></article>
+      <article class="ts-item"><span class="bx-ico"><svg viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3M12 14.5v2.5"/></svg></span><h3 data-i="ts5t">Your data stays yours</h3><p data-i="ts5p">Each company's data is kept separate from every other company's, and access follows the roles you set.</p></article>
+      <article class="ts-item"><span class="bx-ico"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.3-4.6L4 8M4 13a8 8 0 0 0 14.3 4.6L20 16"/><path d="M4 4v4h4M20 20v-4h-4"/></svg></span><h3 data-i="ts6t">Sync you can see</h3><p data-i="ts6p">When connected to your ERP, sync status, errors and conflicts are visible, and failed syncs are retried safely.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLANS (hidden until pricing is validated; remove `hidden` here and on the nav link to show) ============ -->
+<section class="plans" id="plans" aria-labelledby="pnH" hidden>
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow" data-i="pnEyebrow">Plans</p><h2 class="h2" id="pnH" data-i="pnH2">Priced for how you operate.</h2></div>
+      <p class="lede" data-i="pnP">We're setting prices with our first customers, so every plan is quoted. The price depends on a few things, and you only pay for what your operation needs.</p>
+    </div>
+    <div class="pn-grid">
+      <article class="plan"><h3 data-i="pn1t">Full inventory</h3><p data-i="pn1p">Products, stock, locations, transfers, history, reports and permissions.</p><p class="how" data-i="pn1b">Monthly or yearly, by locations and complexity</p></article>
+      <article class="plan"><h3 data-i="pn2t">Map and integration</h3><p data-i="pn2p">The live map and AI on top of the system you already use.</p><p class="how" data-i="pn2b">Base plan, plus a connector and location tier</p></article>
+      <article class="plan"><div class="plan-top"><h3 data-i="pn3t">AI documents</h3><span class="tagx" data-i="pn3tag">Add-on</span></div><p data-i="pn3p">Invoice and document capture that turns paperwork into drafts for review.</p><p class="how" data-i="pn3b">A monthly allowance included, more when you need it</p></article>
+    </div>
+    <div class="pn-dims on-dark">
+      <div>
+        <h3 data-i="pnDimH">Your quote depends on</h3>
+        <ul class="dims">
+          <li data-i="pnD1">Number of locations</li>
+          <li data-i="pnD2">Users and roles</li>
+          <li data-i="pnD3">AI documents per month</li>
+          <li data-i="pnD4">Integration with your system</li>
+          <li data-i="pnD5">Setup and data import</li>
+          <li data-i="pnD6">Support level</li>
+        </ul>
+        <p data-i="pnNote">Setup, data import and training are a one-time fee based on the work involved. Custom integrations are quoted separately.</p>
+      </div>
+      <a class="btn btn-primary" href="#contact" data-i="pnCta">Request a quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq" aria-labelledby="fqH">
+  <div class="wrap fq-grid">
+    <div class="fq-head">
+      <p class="eyebrow" data-i="fqEyebrow">FAQ</p>
+      <h2 class="h2" id="fqH" data-i="fqH2">Questions we hear often.</h2>
+      <p class="lede" data-i="fqP">Something else on your mind? <a href="#contact">Message us</a> and a person from our team will answer.</p>
+    </div>
+    <div class="fq-list">
+      <details open><summary data-i="q1">Do I have to replace my current system?</summary><p data-i="a1">No. If you already use an ERP such as Odoo or SAP, Stacko can sit on top of it and add the map and AI document capture. If you don't have a system, Stacko can be your full inventory.</p></details>
+      <details><summary data-i="q2">Does the AI change my stock on its own?</summary><p data-i="a2">No. The AI reads messages and documents and prepares drafts. New or unclear items are flagged, and stock only changes after someone with approval rights confirms the draft.</p></details>
+      <details><summary data-i="q3">What documents can Stacko read?</summary><p data-i="a3">Supplier invoices and packing lists, as a PDF, an Excel file or a photo. Stacko picks out the supplier, invoice number, date, items, quantities, units and totals when they're on the document.</p></details>
+      <details><summary data-i="q4">Who owns the data?</summary><p data-i="a4">You do. Each company's data is kept separate, and only the people you give access to can see it.</p></details>
+      <details><summary data-i="q5">Can I control who does what?</summary><p data-i="a5">Yes. Permissions are set per action and per location, starting from nine ready-made roles you can adjust. The person who drafts a transaction can't approve it.</p></details>
+      <details><summary data-i="q6">Can you bring in our existing Excel sheets?</summary><p data-i="a6">Yes. Setup includes importing your products, locations and opening stock from your current files, so your team starts with real numbers.</p></details>
+      <details><summary data-i="q7">How long does setup take?</summary><p data-i="a7">It depends on how many locations and products you have, and whether we connect to an existing system. We agree on a clear plan during the demo.</p></details>
+      <details><summary data-i="q8">How much does Stacko cost?</summary><p data-i="a8">The price depends on your locations, users, AI document volume, integration and setup. Tell us how you work and we'll send you a quote.</p></details>
     </div>
   </div>
 </section>
@@ -440,9 +616,9 @@
 <section class="contact on-dark" id="contact" aria-labelledby="ctH">
   <div class="wrap ct-grid">
     <div class="ct-copy">
-      <p class="eyebrow" data-i="ctEyebrow">Early access</p>
-      <h2 class="h2" id="ctH" data-i="ctH2">See your own warehouses on the map.</h2>
-      <p class="lede" data-i="ctP">We're setting up Stacko with a first group of trading and distribution companies in Lebanon and the GCC. Tell us how you work and we'll walk you through it on your own network.</p>
+      <p class="eyebrow" data-i="ctEyebrow">Book a demo</p>
+      <h2 class="h2" id="ctH" data-i="ctH2">Get a clearer view of your stock.</h2>
+      <p class="lede" data-i="ctP">Tell us how you work today, on Excel, paper or an ERP, and we'll walk you through Stacko on your own warehouses and branches.</p>
       <div class="reach">
         <div class="copybox"><span><small data-i="ctMailL">Email</small>info@aiphin.me</span><button type="button" data-copy="info@aiphin.me" data-i="ctCopy">Copy</button></div>
         <div class="copybox"><span><small data-i="ctWaL">WhatsApp</small><bdi>+961 71 313 917</bdi></span><button type="button" data-copy="+961 71 313 917" data-i="ctCopy2">Copy</button></div>
@@ -463,6 +639,13 @@
               <label><input type="radio" name="wh" id="wh2" value="2–3" checked><span>2–3</span></label>
               <label><input type="radio" name="wh" id="wh3" value="4–6"><span>4–6</span></label>
               <label><input type="radio" name="wh" id="wh4" value="7+"><span>7+</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="f full"><legend data-i="fmSys">What do you use today?</legend>
+            <div class="chipset">
+              <label><input type="radio" name="sys" value="excel" checked><span data-i="sys1">Excel or paper</span></label>
+              <label><input type="radio" name="sys" value="erp"><span data-i="sys2">An ERP (Odoo, SAP…)</span></label>
+              <label><input type="radio" name="sys" value="other"><span data-i="sys3">Something else</span></label>
             </div>
           </fieldset>
           <label class="f full"><span data-i="fmMsg">What do you import, and from where? <em>(optional)</em></span><textarea id="fMsg" name="message" rows="3"></textarea></label>
@@ -489,7 +672,7 @@
       <a class="btn btn-primary" href="#contact" data-i="ftCta">Book a demo</a>
     </div>
     <div class="ft">
-      <p class="ft-tag">Your stock, always in sight<span lang="ar">مخزونك دايماً قدّام عينك</span></p>
+      <p class="ft-tag" data-i="ftTag">Your stock, always in sight</p>
       <div>
         <a class="aiphin" href="https://aiphin.me" target="_blank" rel="noopener"><span data-i="ftBy">A product by</span> <b><span>AI</span>PHIN</b></a>
         <small data-i="ftRights">© 2026 Aiphin · Beirut</small>
