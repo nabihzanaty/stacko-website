@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://stacko.aiphin.me/</loc>
+    <loc>https://stacko-lb.com/</loc>
     <lastmod>2026-10-24</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://stacko.aiphin.me/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://stacko.aiphin.me/ar/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://stacko.aiphin.me/"/>
-    <image:image><image:loc>https://stacko.aiphin.me/assets/images/og-image.jpg</image:loc></image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stacko-lb.com/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://stacko-lb.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stacko-lb.com/"/>
+    <image:image><image:loc>https://stacko-lb.com/assets/images/og-image.jpg</image:loc></image:image>
   </url>
   <url>
-    <loc>https://stacko.aiphin.me/ar/</loc>
+    <loc>https://stacko-lb.com/ar/</loc>
     <lastmod>2026-10-24</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://stacko.aiphin.me/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://stacko.aiphin.me/ar/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://stacko.aiphin.me/"/>
-    <image:image><image:loc>https://stacko.aiphin.me/assets/images/og-image.jpg</image:loc></image:image>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stacko-lb.com/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://stacko-lb.com/ar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stacko-lb.com/"/>
+    <image:image><image:loc>https://stacko-lb.com/assets/images/og-image.jpg</image:loc></image:image>
   </url>
 </urlset>

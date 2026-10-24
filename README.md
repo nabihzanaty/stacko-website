@@ -35,7 +35,7 @@ The script fails if any `data-i` key has no Arabic copy.
 ## SEO
 
 - Each language has its own URL with `hreflang` links between them (`/` and `/ar/`).
-- Canonical, Open Graph, sitemap and structured data all use `https://stacko.aiphin.me`. If the production domain changes, replace it in `index.html`, `tools/build-ar.js`, `robots.txt` and `sitemap.xml`, then rebuild the Arabic page.
+- Canonical, Open Graph, sitemap and structured data all use `https://stacko-lb.com`. If the production domain changes, replace it in `index.html`, `tools/build-ar.js`, `robots.txt` and `sitemap.xml`, then rebuild the Arabic page.
 - Update `<lastmod>` in `sitemap.xml` when page content changes.
 
 ## Run locally
@@ -48,4 +48,4 @@ Asset paths are root-relative (`/assets/...`), so serve the folder from the site
 
 ## Deploy
 
-Hosted on Vercel. Every push to `main` deploys. The production domain `stacko.aiphin.me` must be added under the Vercel project's Settings → Domains.
+Hosted on Vercel. Every push to `main` deploys. The production domain `stacko-lb.com` must be added under the Vercel project's Settings → Domains.

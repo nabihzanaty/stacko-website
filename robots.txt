@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://stacko.aiphin.me/sitemap.xml
+Sitemap: https://stacko-lb.com/sitemap.xml
