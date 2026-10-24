@@ -766,7 +766,16 @@ function drawChart(){
 $('#chTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){chTab=b.dataset.t;drawChart()}});
 
 /* ================= contact form ================= */
-// Production: post the same lead object to your n8n webhook or Supabase table before showing the WhatsApp step.
+// Every request is saved to the Stacko CRM (its own Supabase project) before the WhatsApp step.
+// The publishable key is public by design: it can only call submit_website_lead, which validates,
+// rate-limits and deduplicates. Saving never blocks the visitor; WhatsApp still works if it fails.
+const CRM_URL='https://mtsjnwlokngvzelpgwkn.supabase.co/rest/v1/rpc/submit_website_lead',CRM_KEY='sb_publishable_OCtEFOi3iiJ1ZhRLfxtpPQ_pDETD8xd';
+function saveLead(d){
+  const q=new URLSearchParams(location.search),utm={};
+  ['source','medium','campaign','term','content'].forEach(k=>{const v=q.get('utm_'+k);if(v)utm[k]=v.slice(0,100)});
+  const payload={...d,lang,page:location.pathname,utm,website:$('#fWebsite').value};
+  try{fetch(CRM_URL,{method:'POST',keepalive:true,headers:{apikey:CRM_KEY,'Content-Type':'application/json'},body:JSON.stringify({payload})}).catch(()=>{})}catch(e){}
+}
 (()=>{
   const form=$('#cform'),body=$('#fBody'),ok=$('#fOk');let lastMsg='';
   const ph=()=>{const p=t('fmPh');$('#fName').placeholder=p.name;$('#fCompany').placeholder=p.company;$('#fPhone').placeholder=p.phone;$('#fEmail').placeholder=p.email;$('#fMsg').placeholder=p.msg};
@@ -778,6 +787,7 @@ $('#chTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(
     const a=check($('#fwName'),$('#fName'),v=>v.length>1),b=check($('#fwPhone'),$('#fPhone'),v=>v.replace(/\D/g,'').length>=7);
     if(!a){$('#fName').focus();return}if(!b){$('#fPhone').focus();return}
     const d={name:$('#fName').value.trim(),company:$('#fCompany').value.trim(),phone:$('#fPhone').value.trim(),email:$('#fEmail').value.trim(),wh:(form.querySelector('input[name=wh]:checked')||{}).value||'-',sys:((form.querySelector('input[name=sys]:checked')||{}).nextElementSibling||{}).textContent||'-',msg:$('#fMsg').value.trim()};
+    saveLead({name:d.name,company:d.company,phone:d.phone,email:d.email,wh:d.wh,sys:(form.querySelector('input[name=sys]:checked')||{}).value,msg:d.msg});
     lastMsg=t('fmText')(d);$('#fOkMsg').textContent=lastMsg;$('#fOkLink').href='https://wa.me/96171313917?text='+encodeURIComponent(lastMsg);
     body.hidden=true;ok.hidden=false;ok.focus();
   });

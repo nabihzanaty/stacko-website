@@ -702,6 +702,7 @@ html[lang=ar] .cform h3{font-family:var(--f-ar);font-weight:700}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
 .f{display:flex;flex-direction:column;gap:6px;min-width:0;border:0;padding:0;margin:0}
 .f.full{grid-column:1/-1}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .f>span,.f>legend{font-size:12.5px;font-weight:600;color:var(--deep);padding:0;margin-bottom:6px}
 .f>span em,.f>legend em{font-style:normal;font-weight:400;color:var(--ink2)}
 .f input,.f textarea{width:100%;border:1.5px solid var(--visor);border-radius:12px;padding:11px 13px;font-size:15px;background:var(--paper);min-height:48px;resize:vertical;color:var(--abyss)}
