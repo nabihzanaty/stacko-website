@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /home/
 
 Sitemap: https://stacko.aiphin.me/sitemap.xml

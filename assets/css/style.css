@@ -63,7 +63,7 @@ html[lang=ar] .lockup .wm-ar{display:inline}
 .nav-links a{color:var(--visor);text-decoration:none;font-size:14px;font-weight:500;padding:8px 0}
 .nav-links a:hover{color:#fff}
 .nav-r{display:flex;align-items:center;gap:10px}
-.lang-btn{min-height:40px;padding:0 14px;border-radius:11px;border:1px solid rgba(201,216,228,.3);background:transparent;color:#fff;font-weight:600;font-size:13.5px}
+.lang-btn{display:inline-flex;align-items:center;text-decoration:none;min-height:40px;padding:0 14px;border-radius:11px;border:1px solid rgba(201,216,228,.3);background:transparent;color:#fff;font-weight:600;font-size:13.5px}
 .lang-btn:hover{border-color:var(--visor)}
 html[lang=en] .lang-btn{font-family:var(--f-ar)}
 .nav .btn{min-height:40px;padding:0 16px;font-size:13.5px;border-radius:11px}

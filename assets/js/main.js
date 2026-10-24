@@ -1,8 +1,8 @@
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-let lang='en';
-try{if(localStorage.getItem('stacko-lang')==='ar')lang='ar'}catch(e){}
+// Each language has its own URL (/ and /ar/), so the page's lang attribute decides.
+let lang=document.documentElement.lang==='ar'?'ar':'en';
 
 /* ================= dynamic strings ================= */
 const arDays=n=>n===1?'يوم واحد':n===2?'يومان':n<=10?`${n} أيام`:`${n} يوماً`;
@@ -923,14 +923,11 @@ $('#rlPick').addEventListener('click',e=>{const b=e.target.closest('button');if(
 function applyLang(l){
   lang=l;const h=document.documentElement;h.lang=l;h.dir=l==='ar'?'rtl':'ltr';
   $$('[data-i]').forEach(el=>{const k=el.dataset.i;el.innerHTML=l==='ar'?(AR[k]??EN[k]):EN[k]});
-  const lb=$('#langBtn');lb.textContent=l==='ar'?'English':'العربية';lb.lang=l==='ar'?'en':'ar';
   [storyView,appView].forEach(v=>v.labels());
   storyStatic();renderSide();renderKpis();ask(askQ,true);renderOrigins();renderRibbon();storyUpdate();
   renderToast();renderTry();srchRender();mwTabs();mwRender();renderNotes(false);renderTransit();drawChart();window.__formPh&&window.__formPh();
   invPhase(invPh);renderRoles();
-  try{localStorage.setItem('stacko-lang',l)}catch(e){}
 }
-$('#langBtn').addEventListener('click',()=>applyLang(lang==='en'?'ar':'en'));
 
 /* ================= copy + nav ================= */
 $$('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.copy,done=()=>{const o=b.textContent;b.textContent=t('copied');setTimeout(()=>b.textContent=o,1600)};

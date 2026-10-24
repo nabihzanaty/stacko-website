@@ -2,25 +2,41 @@
 
 Marketing site for **Stacko**, live inventory and warehouse management for Lebanon and the GCC. A product by [AIPHIN](https://aiphin.me).
 
-Static site: plain HTML, CSS and JavaScript, no build step.
+Static site: plain HTML, CSS and JavaScript. The only build step generates the Arabic page.
 
 ## Structure
 
 ```
-index.html            Home page (served at /)
+index.html            English home page (served at /)
+ar/index.html         Arabic home page (served at /ar/), GENERATED, do not edit by hand
+tools/build-ar.js     Builds ar/index.html from index.html + the Arabic copy in main.js
 home/index.html       /home → redirects to /
 404.html              Not-found page
 assets/
   css/style.css       All styles
-  js/main.js          Map engine, interactions, EN/AR language switch
+  js/main.js          Map engine, interactions, English + Arabic copy (const AR / const T)
   images/             Hero map, social preview, favicon and app icons
 robots.txt, sitemap.xml, site.webmanifest
+vercel.json           Redirects, trailing slashes, caching and security headers
 ```
 
-## Clean URLs
+## Editing copy
 
-Pages live in folders as `index.html` (e.g. `about/index.html`), so URLs never show `.html`:
-`/`, `/home`, `/about`. To add a page, create `<name>/index.html`, link to it as `/<name>`, and add it to `sitemap.xml`.
+- English copy lives in `index.html` (elements with `data-i="key"`).
+- Arabic copy lives in `const AR` in `assets/js/main.js`, under the same keys.
+- After changing either, regenerate the Arabic page and commit it:
+
+```
+node tools/build-ar.js
+```
+
+The script fails if any `data-i` key has no Arabic copy.
+
+## SEO
+
+- Each language has its own URL with `hreflang` links between them (`/` and `/ar/`).
+- Canonical, Open Graph, sitemap and structured data all use `https://stacko.aiphin.me`. If the production domain changes, replace it in `index.html`, `tools/build-ar.js`, `robots.txt` and `sitemap.xml`, then rebuild the Arabic page.
+- Update `<lastmod>` in `sitemap.xml` when page content changes.
 
 ## Run locally
 
@@ -28,11 +44,8 @@ Pages live in folders as `index.html` (e.g. `about/index.html`), so URLs never s
 npx serve .
 ```
 
-## Deploy (GitHub Pages)
+Asset paths are root-relative (`/assets/...`), so serve the folder from the site root.
 
-1. Push to GitHub.
-2. Settings → Pages → Deploy from branch → `main` / root.
-3. For a custom domain, add it under Pages settings (this creates a `CNAME` file).
+## Deploy
 
-The production domain is set to `https://stacko.aiphin.me`. If it differs, replace it in
-`index.html`, `home/index.html`, `robots.txt` and `sitemap.xml`.
+Hosted on Vercel. Every push to `main` deploys. The production domain `stacko.aiphin.me` must be added under the Vercel project's Settings → Domains.

@@ -2,6 +2,7 @@
   "name": "Stacko",
   "short_name": "Stacko",
   "description": "Every warehouse, item and shipment on one live map.",
+  "lang": "en",
   "start_url": "/",
   "display": "browser",
   "background_color": "#0E2440",
