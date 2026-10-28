@@ -200,11 +200,11 @@ const AR={
  fmSys:'ماذا تستخدم اليوم؟',sys1:'Excel أو ورق',sys2:'نظام ERP مثل Odoo أو SAP',sys3:'شيء آخر',
  ctMailL:'البريد الإلكتروني',ctWaL:'WhatsApp',ctCopy:'نسخ',ctCopy2:'نسخ',
  fmTitle:'أخبرنا عن مخزونك',fmSub:'يأخذ دقيقة واحدة. نردّ عليك بموعد لعرض قصير.',
- fmName:'الاسم الكامل',fmCompany:'الشركة <em>(اختياري)</em>',fmPhone:'الهاتف أو WhatsApp',fmEmail:'البريد الإلكتروني <em>(اختياري)</em>',
+ fmName:'الاسم الكامل',fmCompany:'الشركة <em>(اختياري)</em>',fmPhone:'الهاتف أو WhatsApp',fmEmail:'البريد الإلكتروني <em>(لتصلك رسالة التأكيد ورابط العرض)</em>',
  fmWh:'كم مستودعاً أو فرعاً لديك؟',fmMsg:'ماذا تستورد، ومن أين؟ <em>(اختياري)</em>',
  fmErrName:'يرجى إدخال اسمك.',fmErrPhone:'يرجى إدخال رقم هاتف أو WhatsApp.',
- fmSend:'اطلب عرضاً تجريبياً',fmNote:'يُفتح طلبك في WhatsApp جاهزاً للإرسال إلى فريقنا.',
- fmOkT:'طلبك جاهز',fmOkP:'أرسله عبر WhatsApp ليصل مباشرةً إلى فريقنا. هذا نصّه:',fmOkBtn:'أرسل عبر WhatsApp',fmCopyMsg:'انسخ الرسالة',fmEdit:'عدّل التفاصيل',
+ fmSend:'اطلب عرضاً تجريبياً',fmNote:'تم حفظ طلبك لدى فريقنا. يمكنك أيضاً إرساله عبر WhatsApp للحصول على ردّ أسرع.',
+ fmOkT:'تم حفظ طلبك',fmOkP:'سنتواصل معك قريباً. للحصول على ردّ أسرع، أرسله عبر WhatsApp أيضاً. هذا نصّه:',fmWarn:'تعذّر حفظ طلبك عبر الإنترنت. يرجى إرساله عبر WhatsApp ليصل إلى فريقنا.',fmOkBtn:'أرسل عبر WhatsApp',fmCopyMsg:'انسخ الرسالة',fmEdit:'عدّل التفاصيل',
  ftStrip:'إدارة مخزون أذكى. في كل موقع.',ftCta:'احجز عرضاً',ftTag:'مخزونك دايماً قدّام عينك',ftBy:'منتج من',ftRights:'© 2026 أيفِن · بيروت'
 };
 const EN={};$$('[data-i]').forEach(el=>{EN[el.dataset.i]=el.innerHTML});
@@ -770,11 +770,21 @@ $('#chTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(
 // The publishable key is public by design: it can only call submit_website_lead, which validates,
 // rate-limits and deduplicates. Saving never blocks the visitor; WhatsApp still works if it fails.
 const CRM_URL='https://mtsjnwlokngvzelpgwkn.supabase.co/rest/v1/rpc/submit_website_lead',CRM_KEY='sb_publishable_OCtEFOi3iiJ1ZhRLfxtpPQ_pDETD8xd';
-function saveLead(d){
+// Resolves true once the CRM accepted the lead. One retry on a network or 5xx failure; a 4xx
+// (rate limit, invalid input) is final. A honeypot hit still answers ok, so bots see success.
+async function saveLead(d){
   const q=new URLSearchParams(location.search),utm={};
   ['source','medium','campaign','term','content'].forEach(k=>{const v=q.get('utm_'+k);if(v)utm[k]=v.slice(0,100)});
   const payload={...d,lang,page:location.pathname,utm,website:$('#fWebsite').value};
-  try{fetch(CRM_URL,{method:'POST',keepalive:true,headers:{apikey:CRM_KEY,'Content-Type':'application/json'},body:JSON.stringify({payload})}).catch(()=>{})}catch(e){}
+  for(let i=0;i<2;i++){
+    try{
+      const r=await fetch(CRM_URL,{method:'POST',keepalive:true,headers:{apikey:CRM_KEY,'Content-Type':'application/json'},body:JSON.stringify({payload})});
+      if(r.ok)return true;
+      if(r.status<500)break;
+    }catch(e){}
+    if(!i)await new Promise(res=>setTimeout(res,1200));
+  }
+  return false;
 }
 (()=>{
   const form=$('#cform'),body=$('#fBody'),ok=$('#fOk');let lastMsg='';
@@ -787,7 +797,8 @@ function saveLead(d){
     const a=check($('#fwName'),$('#fName'),v=>v.length>1),b=check($('#fwPhone'),$('#fPhone'),v=>v.replace(/\D/g,'').length>=7);
     if(!a){$('#fName').focus();return}if(!b){$('#fPhone').focus();return}
     const d={name:$('#fName').value.trim(),company:$('#fCompany').value.trim(),phone:$('#fPhone').value.trim(),email:$('#fEmail').value.trim(),wh:(form.querySelector('input[name=wh]:checked')||{}).value||'-',sys:((form.querySelector('input[name=sys]:checked')||{}).nextElementSibling||{}).textContent||'-',msg:$('#fMsg').value.trim()};
-    saveLead({name:d.name,company:d.company,phone:d.phone,email:d.email,wh:d.wh,sys:(form.querySelector('input[name=sys]:checked')||{}).value,msg:d.msg});
+    const warn=$('#fWarn');warn.hidden=true;
+    saveLead({name:d.name,company:d.company,phone:d.phone,email:d.email,wh:d.wh,sys:(form.querySelector('input[name=sys]:checked')||{}).value,msg:d.msg}).then(saved=>{if(!saved){warn.hidden=false;console.warn('Stacko: lead was not saved to the CRM')}});
     lastMsg=t('fmText')(d);$('#fOkMsg').textContent=lastMsg;$('#fOkLink').href='https://wa.me/96171313917?text='+encodeURIComponent(lastMsg);
     body.hidden=true;ok.hidden=false;ok.focus();
   });
