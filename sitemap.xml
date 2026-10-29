@@ -16,4 +16,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://stacko-lb.com/"/>
     <image:image><image:loc>https://stacko-lb.com/assets/images/og-image.jpg</image:loc></image:image>
   </url>
+  <url>
+    <loc>https://stacko-lb.com/pricing/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stacko-lb.com/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://stacko-lb.com/ar/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stacko-lb.com/pricing/"/>
+  </url>
+  <url>
+    <loc>https://stacko-lb.com/ar/pricing/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stacko-lb.com/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://stacko-lb.com/ar/pricing/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stacko-lb.com/pricing/"/>
+  </url>
 </urlset>

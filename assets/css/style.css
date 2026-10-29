@@ -653,21 +653,6 @@ html[lang=ar] .lg .k{letter-spacing:0}
 @media(max-width:960px){.ts-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.ts-grid{grid-template-columns:1fr}}
 
-/* ---------- plans ---------- */
-.plans{background:var(--paper);padding-block:clamp(84px,10vw,150px)}
-.pn-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:clamp(36px,5vw,60px)}
-.plan{background:#fff;border:1px solid #E3ECF2;border-radius:26px;padding:24px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.plan-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.plan h3{font-size:20px;font-weight:600;letter-spacing:-.02em}
-.plan>p{color:var(--ink2);font-size:15px}
-.plan .how{margin-top:auto;padding-top:14px;border-top:1px solid var(--foam);font-size:13.5px;font-weight:600;color:var(--deep)}
-.pn-dims{margin-top:20px;background:var(--abyss);color:#fff;border-radius:26px;padding:clamp(20px,2.6vw,30px);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 28px;align-items:center}
-.pn-dims h3{font-size:18px;font-weight:600}
-.dims{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:8px}
-.dims li{font-size:13px;font-weight:500;padding:7px 12px;border-radius:999px;background:rgba(201,216,228,.1);border:1px solid rgba(201,216,228,.16)}
-.pn-dims p{color:var(--visor);font-size:13.5px;margin-top:14px;max-width:46em}
-@media(max-width:900px){.pn-grid,.pn-dims{grid-template-columns:1fr}}
-
 /* ---------- faq ---------- */
 .faq{background:#fff;padding-block:clamp(84px,10vw,150px)}
 .fq-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(28px,5vw,72px);align-items:start}
@@ -680,10 +665,11 @@ html[lang=ar] .lg .k{letter-spacing:0}
 .fq-list summary::after{content:"";width:9px;height:9px;flex:none;margin-inline-end:4px;border-right:2px solid var(--signal);border-bottom:2px solid var(--signal);transform:rotate(45deg) translateY(-3px);transition:transform .2s}
 .fq-list details[open] summary::after{transform:rotate(225deg)}
 .fq-list p{color:var(--ink2);padding:0 0 22px;max-width:44em;font-size:15.5px}
+.fq-list p a{color:var(--signal);font-weight:600}
 @media(max-width:900px){.fq-grid{grid-template-columns:1fr}.fq-head{position:static}}
 
 /* Arabic display font for the new section headings */
-html[lang=ar] :is(.su-card h3,.uc h3,.rl-top h3,.rl-pick b,.ts-item h3,.plan h3,.pn-dims h3,.fq-list summary,.mode b){font-family:var(--f-ar);font-weight:700;letter-spacing:0}
+html[lang=ar] :is(.su-card h3,.uc h3,.rl-top h3,.rl-pick b,.ts-item h3,.fq-list summary,.mode b){font-family:var(--f-ar);font-weight:700;letter-spacing:0}
 
 /* ---------- contact ---------- */
 .contact{background:var(--night-bg);color:#fff;padding-block:clamp(84px,10vw,150px)}
