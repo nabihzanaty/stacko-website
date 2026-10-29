@@ -619,7 +619,7 @@
           <label class="f" id="fwName"><span data-i="fmName">Full name</span><input id="fName" name="name" autocomplete="name" required aria-describedby="eName"><small class="err" id="eName" data-i="fmErrName">Please enter your name.</small></label>
           <label class="f"><span data-i="fmCompany">Company <em>(optional)</em></span><input id="fCompany" name="company" autocomplete="organization"></label>
           <label class="f" id="fwPhone"><span data-i="fmPhone">Phone or WhatsApp</span><input id="fPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="ePhone"><small class="err" id="ePhone" data-i="fmErrPhone">Please enter a phone or WhatsApp number.</small></label>
-          <label class="f"><span data-i="fmEmail">Email <em>(optional)</em></span><input id="fEmail" name="email" type="email" autocomplete="email"></label>
+          <label class="f"><span data-i="fmEmail">Email <em>(for your confirmation and demo link)</em></span><input id="fEmail" name="email" type="email" autocomplete="email"></label>
           <fieldset class="f full"><legend data-i="fmWh">How many warehouses or branches?</legend>
             <div class="chipset">
               <label><input type="radio" name="wh" id="wh1" value="1"><span>1</span></label>
@@ -638,12 +638,13 @@
           <label class="hp" aria-hidden="true">Website<input id="fWebsite" name="website" tabindex="-1" autocomplete="off"></label>
           <label class="f full"><span data-i="fmMsg">What do you import, and from where? <em>(optional)</em></span><textarea id="fMsg" name="message" rows="3"></textarea></label>
         </div>
-        <div class="f-actions"><button class="btn btn-primary" type="submit" data-i="fmSend">Request a demo</button><p class="fnote" data-i="fmNote">Your request opens in WhatsApp, ready to send to our team.</p></div>
+        <div class="f-actions"><button class="btn btn-primary" type="submit" data-i="fmSend">Request a demo</button><p class="fnote" data-i="fmNote">Your request is saved with our team. You can also send it on WhatsApp for a faster reply.</p></div>
       </div>
       <div class="fok" id="fOk" hidden tabindex="-1">
         <span class="ck"><svg><use href="#i-check"/></svg></span>
-        <h3 data-i="fmOkT">Your request is ready</h3>
-        <p class="sub" data-i="fmOkP">Send it on WhatsApp and it goes straight to our team. Here is what it says:</p>
+        <h3 data-i="fmOkT">Your request is saved</h3>
+        <p class="sub" data-i="fmOkP">We will be in touch shortly. For a faster reply, send it on WhatsApp too. Here is what it says:</p>
+        <p class="sub fwarn" id="fWarn" role="alert" hidden data-i="fmWarn">We could not save your request online. Please send it on WhatsApp so it reaches our team.</p>
         <pre id="fOkMsg"></pre>
         <div class="row2"><a class="btn btn-primary" id="fOkLink" href="https://wa.me/96171313917" target="_blank" rel="noopener"><span data-i="fmOkBtn">Send on WhatsApp</span><svg class="flip" width="16" height="16"><use href="#i-go"/></svg></a><button class="ghost-dk" type="button" id="fCopy" data-i="fmCopyMsg">Copy message</button><button class="linkbtn" type="button" id="fEdit" data-i="fmEdit">Edit details</button></div>
       </div>

@@ -699,7 +699,7 @@
           <label class="f" id="fwName"><span data-i="fmName">الاسم الكامل</span><input id="fName" name="name" autocomplete="name" required aria-describedby="eName"><small class="err" id="eName" data-i="fmErrName">يرجى إدخال اسمك.</small></label>
           <label class="f"><span data-i="fmCompany">الشركة <em>(اختياري)</em></span><input id="fCompany" name="company" autocomplete="organization"></label>
           <label class="f" id="fwPhone"><span data-i="fmPhone">الهاتف أو WhatsApp</span><input id="fPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="ePhone"><small class="err" id="ePhone" data-i="fmErrPhone">يرجى إدخال رقم هاتف أو WhatsApp.</small></label>
-          <label class="f"><span data-i="fmEmail">البريد الإلكتروني <em>(اختياري)</em></span><input id="fEmail" name="email" type="email" autocomplete="email"></label>
+          <label class="f"><span data-i="fmEmail">البريد الإلكتروني <em>(لتصلك رسالة التأكيد ورابط العرض)</em></span><input id="fEmail" name="email" type="email" autocomplete="email"></label>
           <fieldset class="f full"><legend data-i="fmWh">كم مستودعاً أو فرعاً لديك؟</legend>
             <div class="chipset">
               <label><input type="radio" name="wh" id="wh1" value="1"><span>1</span></label>
@@ -718,12 +718,13 @@
           <label class="hp" aria-hidden="true">Website<input id="fWebsite" name="website" tabindex="-1" autocomplete="off"></label>
           <label class="f full"><span data-i="fmMsg">ماذا تستورد، ومن أين؟ <em>(اختياري)</em></span><textarea id="fMsg" name="message" rows="3"></textarea></label>
         </div>
-        <div class="f-actions"><button class="btn btn-primary" type="submit" data-i="fmSend">اطلب عرضاً تجريبياً</button><p class="fnote" data-i="fmNote">يُفتح طلبك في WhatsApp جاهزاً للإرسال إلى فريقنا.</p></div>
+        <div class="f-actions"><button class="btn btn-primary" type="submit" data-i="fmSend">اطلب عرضاً تجريبياً</button><p class="fnote" data-i="fmNote">تم حفظ طلبك لدى فريقنا. يمكنك أيضاً إرساله عبر WhatsApp للحصول على ردّ أسرع.</p></div>
       </div>
       <div class="fok" id="fOk" hidden tabindex="-1">
         <span class="ck"><svg><use href="#i-check"/></svg></span>
-        <h3 data-i="fmOkT">طلبك جاهز</h3>
-        <p class="sub" data-i="fmOkP">أرسله عبر WhatsApp ليصل مباشرةً إلى فريقنا. هذا نصّه:</p>
+        <h3 data-i="fmOkT">تم حفظ طلبك</h3>
+        <p class="sub" data-i="fmOkP">سنتواصل معك قريباً. للحصول على ردّ أسرع، أرسله عبر WhatsApp أيضاً. هذا نصّه:</p>
+        <p class="sub fwarn" id="fWarn" role="alert" hidden data-i="fmWarn">تعذّر حفظ طلبك عبر الإنترنت. يرجى إرساله عبر WhatsApp ليصل إلى فريقنا.</p>
         <pre id="fOkMsg"></pre>
         <div class="row2"><a class="btn btn-primary" id="fOkLink" href="https://wa.me/96171313917" target="_blank" rel="noopener"><span data-i="fmOkBtn">أرسل عبر WhatsApp</span><svg class="flip" width="16" height="16"><use href="#i-go"/></svg></a><button class="ghost-dk" type="button" id="fCopy" data-i="fmCopyMsg">انسخ الرسالة</button><button class="linkbtn" type="button" id="fEdit" data-i="fmEdit">عدّل التفاصيل</button></div>
       </div>

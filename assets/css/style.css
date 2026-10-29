@@ -707,6 +707,7 @@ html[lang=ar] .cform h3{font-family:var(--f-ar);font-weight:700}
 .f-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:22px}
 .f-actions .btn{min-width:200px}
 .fnote{font-size:12.5px;color:var(--ink2);max-width:30em}
+.fok .fwarn{background:#FFF4E5;border:1px solid #F2C97D;border-radius:12px;padding:10px 14px;color:#7A4B00}
 .fok{display:flex;flex-direction:column;gap:14px}
 .fok[hidden]{display:none}
 .fok .ck{width:52px;height:52px;border-radius:50%;background:var(--ok);display:grid;place-items:center}
