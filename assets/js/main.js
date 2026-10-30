@@ -199,6 +199,8 @@ const AR={
  fmErrName:'يرجى إدخال اسمك.',fmErrPhone:'يرجى إدخال رقم هاتف أو WhatsApp.',
  fmSend:'اطلب عرضاً تجريبياً',fmNote:'تم حفظ طلبك لدى فريقنا. يمكنك أيضاً إرساله عبر WhatsApp للحصول على ردّ أسرع.',
  fmOkT:'تم حفظ طلبك',fmOkP:'سنتواصل معك قريباً. للحصول على ردّ أسرع، أرسله عبر WhatsApp أيضاً. هذا نصّه:',fmWarn:'تعذّر حفظ طلبك عبر الإنترنت. يرجى إرساله عبر WhatsApp ليصل إلى فريقنا.',fmOkBtn:'أرسل عبر WhatsApp',fmCopyMsg:'انسخ الرسالة',fmEdit:'عدّل التفاصيل',
+ ftAbout:'إدارة مخزون ومستودعات مباشرة لشركات التجارة والتوزيع في لبنان والخليج.',ftProduct:'المنتج',ftContact:'تواصل معنا',
+ ftWa:'WhatsApp',ftEmail:'البريد الإلكتروني',ftCity:'بيروت، لبنان',ftLangH:'اللغة',
  ftStrip:'إدارة مخزون أذكى. في كل موقع.',ftCta:'احجز عرضاً',ftTag:'مخزونك دايماً قدّام عينك',ftBy:'منتج من',ftRights:'© 2026 أيفِن · بيروت'
 };
 const EN={};$$('[data-i]').forEach(el=>{EN[el.dataset.i]=el.innerHTML});

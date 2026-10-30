@@ -127,7 +127,6 @@ const COPY = {
       ],
     },
     final: { h2: 'See your stock live', p: 'Tell us how you work and we’ll show you Stacko on your own warehouses and shops.', demo: 'Book a demo', whatsapp: 'Message us on WhatsApp' },
-    footer: { strip: 'Smarter stock management. Across every location.', tagline: 'Your stock, always in sight', by: 'A product by', rights: '© 2026 Aiphin · Beirut' },
     whatsappText: (plan) => plan ? `Hi Stacko team, I'm interested in the ${plan} plan.` : "Hi Stacko team, I'd like to see Stacko.",
   },
 
@@ -240,7 +239,6 @@ const COPY = {
       ],
     },
     final: { h2: 'شاهد مخزونك مباشرة', p: 'أخبرنا كيف تعمل، ونريك ستاكو على مستودعاتك ومتاجرك أنت.', demo: 'احجز عرضاً تجريبياً', whatsapp: 'راسلنا على WhatsApp' },
-    footer: { strip: 'إدارة مخزون أذكى. في كل موقع.', tagline: 'مخزونك دايماً قدّام عينك', by: 'منتج من', rights: '© 2026 أيفِن · بيروت' },
     whatsappText: (plan) => plan ? `مرحباً فريق ستاكو، أنا مهتم بخطة ${plan}.` : 'مرحباً فريق ستاكو، أود رؤية ستاكو.',
   },
 };

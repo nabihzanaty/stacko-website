@@ -721,16 +721,33 @@ html[lang=ar] .cform h3{font-family:var(--f-ar);font-weight:700}
 @media(max-width:560px){.fgrid{grid-template-columns:1fr}}
 
 /* ---------- footer ---------- */
-footer{background:var(--deepest);color:var(--visor);padding-block:40px calc(32px + env(safe-area-inset-bottom,0px))}
-.ft-strip{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;padding-bottom:28px;margin-bottom:24px;border-bottom:1px solid rgba(201,216,228,.12)}
-.ft-strip p{flex:1;min-width:220px;font-size:clamp(16px,1.5vw,20px);color:#fff;font-weight:500;letter-spacing:-.01em}
-.ft{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
-.ft-tag{font-size:13.5px}
-html[lang=ar] .ft-tag{font-family:var(--f-ar)}
+/* Photo (BG-04, the Stacko office at evening) under a near-black overlay, then the content. */
+.site-ft{position:relative;isolation:isolate;overflow:hidden;background:#05101d;color:var(--visor)}
+.ft-bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.site-ft::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(3,9,17,.80) 0%,rgba(3,9,17,.88) 45%,rgba(3,9,17,.96) 100%)}
+.ft-in{padding-block:clamp(56px,7vw,96px) calc(28px + env(safe-area-inset-bottom,0px))}
+.ft-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px;padding-bottom:clamp(32px,4vw,48px);border-bottom:1px solid rgba(201,216,228,.14)}
+.ft-big{font-size:clamp(28px,3.4vw,46px);font-weight:600;letter-spacing:-.03em;line-height:1.1;color:#fff}
+html[lang=ar] .ft-big{font-family:var(--f-ar);font-weight:700;letter-spacing:0;line-height:1.35}
+.ft-sub{margin-top:8px;font-size:clamp(15px,1.3vw,18px);color:var(--visor)}
+.ft-cols{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:32px;padding-block:clamp(32px,4vw,48px)}
+.ft-brand{display:flex;flex-direction:column;align-items:flex-start;gap:16px;max-width:340px}
+.ft-brand p{font-size:14.5px;line-height:1.6}
+.ft-h{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dolphin);margin-bottom:14px}
+html[lang=ar] .ft-h{letter-spacing:0;font-size:13.5px}
+.ft-col ul{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.ft-col li{font-size:14.5px;min-height:36px;display:flex;align-items:center}
+.ft-col a{color:var(--visor);text-decoration:none;display:inline-flex;flex-wrap:wrap;gap:4px 8px;padding-block:6px}
+.ft-col a:hover{color:#fff}
+.ft-col bdi{color:#fff;font-variant-numeric:tabular-nums}
 .aiphin{display:flex;align-items:baseline;gap:8px;font-size:12px;color:var(--visor);text-decoration:none}
 .aiphin b{font-family:var(--f-aiphin);font-weight:400;letter-spacing:.05em;font-size:19px;color:#fff}
 .aiphin b span{color:var(--glow)}
-.ft small{display:block;margin-top:6px;font-size:12px;color:var(--dolphin)}
+.ft-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 20px;padding-top:22px;border-top:1px solid rgba(201,216,228,.14);font-size:12.5px;color:var(--dolphin)}
+.ft-bottom a{color:var(--dolphin);text-decoration:none}
+.ft-bottom a:hover{color:#fff}
+@media(max-width:900px){.ft-cols{grid-template-columns:1fr 1fr}.ft-brand{grid-column:1/-1;max-width:none}}
+@media(max-width:480px){.ft-cols{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 /* Logo mark dot colours (used by the #mark SVG symbol) */

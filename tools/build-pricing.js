@@ -1,3 +1,4 @@
+// Run after tools/build-ar.js (the footer is copied from index.html and ar/index.html).
 // Builds the pricing page in English and Arabic from tools/pricing-data.js:
 //   pricing/index.html      (/pricing/)
 //   ar/pricing/index.html   (/ar/pricing/)
@@ -18,6 +19,15 @@ const money = (n) => `$${num(n)}`;
 const home = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const markSymbol = /<filter id="mkGlow"[\s\S]*?<\/filter>\s*<symbol id="mark"[\s\S]*?<\/symbol>/.exec(home);
 if (!markSymbol) throw new Error('Logo mark not found in index.html');
+
+// The site footer lives in the homepage (index.html, and ar/index.html built by build-ar.js);
+// the pricing pages reuse it, with its #section links pointing back at the homepage.
+function siteFooter(lang, base) {
+  const page = fs.readFileSync(path.join(root, lang === 'ar' ? 'ar/index.html' : 'index.html'), 'utf8');
+  const footer = /<footer class="site-ft">[\s\S]*?<\/footer>/.exec(page);
+  if (!footer) throw new Error(`Site footer not found in ${lang === 'ar' ? 'ar/index.html' : 'index.html'} (run build-ar.js first)`);
+  return footer[0].split('href="#').join(`href="${base}#`);
+}
 
 const ICONS = `
 <symbol id="p-warehouse" viewBox="0 0 48 48"><path d="M6 20 24 9l18 11v19H6z"/><path d="M13 39V26h22v13M13 31h22M13 35h22"/></symbol>
@@ -279,22 +289,7 @@ ${ICONS}
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="ft-strip">
-      <a class="lockup" href="${base}" aria-label="Stacko home"><svg aria-hidden="true"><use href="#mark"/></svg><span class="wm">stack<i>o</i></span><span class="wm-ar">ستاك<i>و</i></span></a>
-      <p>${t.footer.strip}</p>
-      <a class="btn btn-primary" href="${contact()}">${t.nav.demo}</a>
-    </div>
-    <div class="ft">
-      <p class="ft-tag">${t.footer.tagline}</p>
-      <div>
-        <a class="aiphin" href="https://aiphin.me" target="_blank" rel="noopener"><span>${t.footer.by}</span> <b><span>AI</span>PHIN</b></a>
-        <small>${t.footer.rights}</small>
-      </div>
-    </div>
-  </div>
-</footer>
+${siteFooter(lang, base)}
 
 <script src="/assets/js/pricing.js" defer></script>
 </body>

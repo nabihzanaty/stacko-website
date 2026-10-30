@@ -74,7 +74,8 @@ swapAttr('<meta name="twitter:description"', T.ogDesc);
 swapAttr('<meta name="twitter:image:alt"', T.alt);
 swap('<a class="lang-btn" id="langBtn" href="/ar/" hreflang="ar" lang="ar">العربية</a>',
      '<a class="lang-btn" id="langBtn" href="/" hreflang="en" lang="en">English</a>');
-swap('<a href="/pricing/" data-i="navPricing">', '<a href="/ar/pricing/" data-i="navPricing">');
+// Every link to the pricing page (navbar, footer) goes to the Arabic one.
+html = html.split('href="/pricing/"').join('href="/ar/pricing/"');
 
 // ---- structured data: Arabic web page and FAQ ----
 const ld = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(html);
