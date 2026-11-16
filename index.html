@@ -194,29 +194,41 @@
     <div class="pb-copy">
       <p class="eyebrow" data-i="pbEyebrow">The real problem</p>
       <h2 class="h2" id="pbH" data-i="pbH2">Nobody logs the transfers.</h2>
-      <p class="lede" data-i="pbP">Goods move between warehouses all day. Logging each move feels like extra work with nothing to show for it, so it gets skipped. The numbers drift, and soon nobody trusts them.</p>
-      <div class="pb-answer">
-        <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#0E2440"/><svg x="7" y="7" width="26" height="26"><use href="#mark"/></svg></svg>
-        <p data-i="pbAnswer"><b>Stacko's answer:</b> make logging take about 10 seconds, and make every log visible on the map as a truck, a ship or a plane.</p>
-      </div>
+      <p class="lede" data-i="pbP">Goods move between warehouses all day. Logging a move means a form or a spreadsheet, so it gets skipped. Each skipped move leaves the records wrong, and soon nobody trusts them.</p>
+      <p class="pb-note" data-i="pbNote">Here is the same transfer, before and after Stacko.</p>
     </div>
-    <div class="sheet">
-      <div class="sh-top">
-        <h3><span data-i="shTitle">Count sheet · WH-01 Beirut</span><small data-i="shSub">What the records say vs. what's on the shelf</small></h3>
-        <span class="tagx" data-i="shExample">Example</span>
+    <div class="ba">
+      <p class="ba-case"><svg aria-hidden="true"><use href="#i-truck"/></svg><span data-i="baCase">40 × LED Strip 5m · Beirut → Sidon</span></p>
+      <div class="ba-grid">
+        <article class="ba-col before">
+          <p class="ba-tag"><span data-i="baBefore">Before</span></p>
+          <h3 data-i="baBeforeH">The move is never written down</h3>
+          <ol class="ba-steps">
+            <li><svg class="ba-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span data-i="baB1">The truck leaves Beirut. Logging it means a form later.</span></li>
+            <li><svg class="ba-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span data-i="baB2">The day gets busy. Nobody fills it in.</span></li>
+            <li><svg class="ba-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span data-i="baB3">Nobody can see the 40 strips on the road.</span></li>
+          </ol>
+          <div class="ba-res">
+            <dl><div><dt data-i="baRec">In records</dt><dd>640</dd></div><div><dt data-i="baShelf">On shelf</dt><dd>600</dd></div></dl>
+            <span class="gp neg">−40</span>
+          </div>
+          <p class="ba-out" data-i="baBOut">Found weeks later, at the next stock count.</p>
+        </article>
+        <article class="ba-col after">
+          <p class="ba-tag"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#0E2440"/><svg x="7" y="7" width="26" height="26"><use href="#mark"/></svg></svg><span data-i="baAfter">After, with Stacko</span></p>
+          <h3 data-i="baAfterH">The move is logged in 10 seconds</h3>
+          <ol class="ba-steps">
+            <li><svg class="ba-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.6 8.3l2.9 2.9 5.9-6.3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="baA1">Hadi texts the bot on Telegram: “sent 40 LED strips to Sidon”.</span></li>
+            <li><svg class="ba-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.6 8.3l2.9 2.9 5.9-6.3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="baA2">Karim, the manager, approves the draft.</span></li>
+            <li><svg class="ba-ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.6 8.3l2.9 2.9 5.9-6.3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i="baA3">A truck appears on the map with an ETA.</span></li>
+          </ol>
+          <div class="ba-res">
+            <dl><div><dt data-i="baRec2">In records</dt><dd>600</dd></div><div><dt data-i="baShelf2">On shelf</dt><dd>600</dd></div></dl>
+            <span class="gp zero">0</span>
+          </div>
+          <p class="ba-out" data-i="baAOut">Records match the shelf the same minute.</p>
+        </article>
       </div>
-      <div class="tbl-wrap">
-        <table class="count">
-          <thead><tr><th data-i="thItem">Item</th><th class="n" data-i="thSys">In records</th><th class="n" data-i="thShelf">On shelf</th><th class="n" data-i="thGap">Gap</th><th data-i="thWhy">What happened</th></tr></thead>
-          <tbody>
-            <tr><td><span data-i="r1n">LED Strip 5m</span><span class="sku">SKU-10240</span></td><td class="n">640</td><td class="n">600</td><td class="n"><span class="gp neg">−40</span></td><td class="why" data-i="r1w">Sent to Sidon. Nobody logged it.</td></tr>
-            <tr><td><span data-i="r2n">Security Camera</span><span class="sku">SKU-10377</span></td><td class="n">210</td><td class="n">236</td><td class="n"><span class="gp pos">+26</span></td><td class="why" data-i="r2w">A container was received but never entered.</td></tr>
-            <tr><td><span data-i="r3n">Desk Fan</span><span class="sku">SKU-10651</span></td><td class="n">95</td><td class="n">60</td><td class="n"><span class="gp neg">−35</span></td><td class="why" data-i="r3w">Sold from here, deducted in Tripoli.</td></tr>
-            <tr><td><span data-i="r4n">USB-C Cable 1m</span><span class="sku">SKU-10514</span></td><td class="n">1,180</td><td class="n">1,180</td><td class="n"><span class="gp zero">0</span></td><td class="why" data-i="r4w">Matches.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="sh-foot" data-i="shFoot">Three of four lines are wrong, and each one started as a move nobody wrote down.</p>
     </div>
   </div>
 </section>
