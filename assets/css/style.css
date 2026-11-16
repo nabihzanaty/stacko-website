@@ -683,7 +683,11 @@ html[lang=ar] .lg .k{letter-spacing:0}
 html[lang=ar] :is(.su-card h3,.uc h3,.rl-top h3,.rl-pick b,.ts-item h3,.fq-list summary,.mode b){font-family:var(--f-ar);font-weight:700;letter-spacing:0}
 
 /* ---------- contact ---------- */
-.contact{background:var(--night-bg);color:#fff;padding-block:clamp(84px,10vw,150px)}
+.contact{position:relative;isolation:isolate;overflow:hidden;background:var(--abyss);color:#fff;padding-block:clamp(84px,10vw,150px)}
+.ct-bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.contact::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(14,36,64,.94) 0%,rgba(14,36,64,.86) 45%,rgba(14,36,64,.62) 100%)}
+html[dir=rtl] .contact::before{background:linear-gradient(270deg,rgba(14,36,64,.94) 0%,rgba(14,36,64,.86) 45%,rgba(14,36,64,.62) 100%)}
+@media(max-width:900px){.contact::before{background:rgba(14,36,64,.9)}}
 .ct-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,6vw,96px);align-items:start}
 .ct-copy{display:flex;flex-direction:column;gap:22px;position:sticky;top:110px}
 .reach{display:grid;gap:10px;margin-top:6px;max-width:440px}
@@ -733,9 +737,7 @@ html[lang=ar] .cform h3{font-family:var(--f-ar);font-weight:700}
 
 /* ---------- footer ---------- */
 /* Photo (BG-04, the Stacko office at evening) under a near-black overlay, then the content. */
-.site-ft{position:relative;isolation:isolate;overflow:hidden;background:#05101d;color:var(--visor)}
-.ft-bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center 40%}
-.site-ft::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(3,9,17,.80) 0%,rgba(3,9,17,.88) 45%,rgba(3,9,17,.96) 100%)}
+.site-ft{position:relative;background:var(--deepest);color:var(--visor);border-top:1px solid rgba(201,216,228,.12)}
 .ft-in{padding-block:clamp(56px,7vw,96px) calc(28px + env(safe-area-inset-bottom,0px))}
 .ft-cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 40px;padding-bottom:clamp(32px,4vw,48px);border-bottom:1px solid rgba(201,216,228,.14)}
 .ft-big{font-size:clamp(28px,3.4vw,46px);font-weight:600;letter-spacing:-.03em;line-height:1.1;color:#fff}
