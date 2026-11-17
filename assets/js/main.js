@@ -199,8 +199,8 @@ const AR={
  fmName:'الاسم الكامل',fmCompany:'الشركة <em>(اختياري)</em>',fmPhone:'الهاتف أو WhatsApp',fmEmail:'البريد الإلكتروني <em>(لتصلك رسالة التأكيد ورابط العرض)</em>',
  fmWh:'كم مستودعاً أو فرعاً لديك؟',fmMsg:'ماذا تستورد، ومن أين؟ <em>(اختياري)</em>',
  fmErrName:'يرجى إدخال اسمك.',fmErrPhone:'يرجى إدخال رقم هاتف أو WhatsApp.',
- fmSend:'اطلب عرضاً تجريبياً',fmNote:'تم حفظ طلبك لدى فريقنا. يمكنك أيضاً إرساله عبر WhatsApp للحصول على ردّ أسرع.',
- fmOkT:'تم حفظ طلبك',fmOkP:'سنتواصل معك قريباً. للحصول على ردّ أسرع، أرسله عبر WhatsApp أيضاً. هذا نصّه:',fmWarn:'تعذّر حفظ طلبك عبر الإنترنت. يرجى إرساله عبر WhatsApp ليصل إلى فريقنا.',fmOkBtn:'أرسل عبر WhatsApp',fmCopyMsg:'انسخ الرسالة',fmEdit:'عدّل التفاصيل',
+ fmSend:'اطلب عرضاً تجريبياً',
+ fmOkT:'شكراً لك!',fmOkP:'وصلنا طلبك، وسنتواصل معك قريباً لتحديد موعد العرض.',fmWarn:'تعذّر حفظ طلبك عبر الإنترنت. يرجى إرساله إلينا عبر WhatsApp.',fmOkBtn:'أرسل عبر WhatsApp',
  ftAbout:'إدارة مخزون ومستودعات مباشرة لشركات التجارة والتوزيع في لبنان والخليج.',ftProduct:'المنتج',ftContact:'تواصل معنا',
  ftWa:'WhatsApp',ftEmail:'البريد الإلكتروني',ftCity:'بيروت، لبنان',ftLangH:'اللغة',
  ftStrip:'إدارة مخزون أذكى. في كل موقع.',ftCta:'احجز عرضاً',ftTag:'مخزونك دايماً قدّام عينك',ftBy:'منتج من',ftRights:'© 2026 أيفِن · بيروت'
@@ -785,7 +785,7 @@ async function saveLead(d){
   return false;
 }
 (()=>{
-  const form=$('#cform'),body=$('#fBody'),ok=$('#fOk');let lastMsg='';
+  const form=$('#cform'),body=$('#fBody'),ok=$('#fOk');
   // The pricing page links here with ?plan=<plan name>; note it in the message so the CRM lead shows the plan.
   const plan=(new URLSearchParams(location.search).get('plan')||'').replace(/[<>]/g,'').trim().slice(0,40);
   if(plan&&!$('#fMsg').value)$('#fMsg').value=(lang==='ar'?'مهتم بخطة: ':'Interested in the plan: ')+plan;
@@ -798,15 +798,11 @@ async function saveLead(d){
     const a=check($('#fwName'),$('#fName'),v=>v.length>1),b=check($('#fwPhone'),$('#fPhone'),v=>v.replace(/\D/g,'').length>=7);
     if(!a){$('#fName').focus();return}if(!b){$('#fPhone').focus();return}
     const d={name:$('#fName').value.trim(),company:$('#fCompany').value.trim(),phone:$('#fPhone').value.trim(),email:$('#fEmail').value.trim(),wh:(form.querySelector('input[name=wh]:checked')||{}).value||'-',sys:((form.querySelector('input[name=sys]:checked')||{}).nextElementSibling||{}).textContent||'-',msg:$('#fMsg').value.trim()};
-    const warn=$('#fWarn');warn.hidden=true;
-    saveLead({name:d.name,company:d.company,phone:d.phone,email:d.email,wh:d.wh,sys:(form.querySelector('input[name=sys]:checked')||{}).value,msg:d.msg}).then(saved=>{if(!saved){warn.hidden=false;console.warn('Stacko: lead was not saved to the CRM')}});
-    lastMsg=t('fmText')(d);$('#fOkMsg').textContent=lastMsg;$('#fOkLink').href='https://wa.me/96171313917?text='+encodeURIComponent(lastMsg);
+    const warn=$('#fWarn'),okP=$('#fOk .sub');warn.hidden=true;okP.hidden=false;
+    saveLead({name:d.name,company:d.company,phone:d.phone,email:d.email,wh:d.wh,sys:(form.querySelector('input[name=sys]:checked')||{}).value,msg:d.msg}).then(saved=>{if(!saved){warn.hidden=false;okP.hidden=true;console.warn('Stacko: lead was not saved to the CRM')}});
+    $('#fOkLink').href='https://wa.me/96171313917?text='+encodeURIComponent(t('fmText')(d));
     body.hidden=true;ok.hidden=false;ok.focus();
   });
-  $('#fEdit').addEventListener('click',()=>{ok.hidden=true;body.hidden=false;$('#fName').focus()});
-  $('#fCopy').addEventListener('click',()=>{const btn=$('#fCopy'),done=()=>{btn.textContent=t('copied');setTimeout(()=>{btn.innerHTML=lang==='ar'?AR.fmCopyMsg:EN.fmCopyMsg},1600)};
-    const sel=()=>{const r=document.createRange();r.selectNodeContents($('#fOkMsg'));const g=getSelection();g.removeAllRanges();g.addRange(r)};
-    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(lastMsg).then(done,sel);else sel()});
 })();
 
 /* ================= product panel ================= */

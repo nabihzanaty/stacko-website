@@ -43,7 +43,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Noto+Kufi+Arabic:wght@500;600;700&family=Readex+Pro:wght@300;400;500;600;700&display=swap">
 <link rel="preload" href="/assets/images/hero-map.webp" as="image" type="image/webp" fetchpriority="high">
-<link rel="stylesheet" href="/assets/css/style.css?v=20261116c">
+<link rel="stylesheet" href="/assets/css/style.css?v=20261117c">
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -731,15 +731,16 @@
           <label class="hp" aria-hidden="true">Website<input id="fWebsite" name="website" tabindex="-1" autocomplete="off"></label>
           <label class="f full"><span data-i="fmMsg">ماذا تستورد، ومن أين؟ <em>(اختياري)</em></span><textarea id="fMsg" name="message" rows="3"></textarea></label>
         </div>
-        <div class="f-actions"><button class="btn btn-primary" type="submit" data-i="fmSend">اطلب عرضاً تجريبياً</button><p class="fnote" data-i="fmNote">تم حفظ طلبك لدى فريقنا. يمكنك أيضاً إرساله عبر WhatsApp للحصول على ردّ أسرع.</p></div>
+        <div class="f-actions"><button class="btn btn-primary" type="submit" data-i="fmSend">اطلب عرضاً تجريبياً</button></div>
       </div>
       <div class="fok" id="fOk" hidden tabindex="-1">
         <span class="ck"><svg><use href="#i-check"/></svg></span>
-        <h3 data-i="fmOkT">تم حفظ طلبك</h3>
-        <p class="sub" data-i="fmOkP">سنتواصل معك قريباً. للحصول على ردّ أسرع، أرسله عبر WhatsApp أيضاً. هذا نصّه:</p>
-        <p class="sub fwarn" id="fWarn" role="alert" hidden data-i="fmWarn">تعذّر حفظ طلبك عبر الإنترنت. يرجى إرساله عبر WhatsApp ليصل إلى فريقنا.</p>
-        <pre id="fOkMsg"></pre>
-        <div class="row2"><a class="btn btn-primary" id="fOkLink" href="https://wa.me/96171313917" target="_blank" rel="noopener"><span data-i="fmOkBtn">أرسل عبر WhatsApp</span><svg class="flip" width="16" height="16"><use href="#i-go"/></svg></a><button class="ghost-dk" type="button" id="fCopy" data-i="fmCopyMsg">انسخ الرسالة</button><button class="linkbtn" type="button" id="fEdit" data-i="fmEdit">عدّل التفاصيل</button></div>
+        <h3 data-i="fmOkT">شكراً لك!</h3>
+        <p class="sub" data-i="fmOkP">وصلنا طلبك، وسنتواصل معك قريباً لتحديد موعد العرض.</p>
+        <div class="fwarn" id="fWarn" role="alert" hidden>
+          <p data-i="fmWarn">تعذّر حفظ طلبك عبر الإنترنت. يرجى إرساله إلينا عبر WhatsApp.</p>
+          <a class="btn btn-primary" id="fOkLink" href="https://wa.me/96171313917" target="_blank" rel="noopener"><span data-i="fmOkBtn">أرسل عبر WhatsApp</span><svg class="flip" width="16" height="16"><use href="#i-go"/></svg></a>
+        </div>
       </div>
     </form>
   </div>
@@ -796,6 +797,6 @@
   </div>
 </footer>
 
-<script src="/assets/js/main.js?v=20261116c" defer></script>
+<script src="/assets/js/main.js?v=20261117c" defer></script>
 </body>
 </html>

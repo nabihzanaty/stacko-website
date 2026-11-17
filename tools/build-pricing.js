@@ -148,7 +148,7 @@ function build(lang) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Noto+Kufi+Arabic:wght@500;600;700&family=Readex+Pro:wght@300;400;500;600;700&display=swap">
-<link rel="stylesheet" href="/assets/css/style.css?v=20261116c">
+<link rel="stylesheet" href="/assets/css/style.css?v=20261117c">
 <link rel="stylesheet" href="/assets/css/pricing.css">
 <script type="application/ld+json">
 ${JSON.stringify(ld, null, 2)}
